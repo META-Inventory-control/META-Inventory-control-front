@@ -13,7 +13,9 @@ const ContactList = () => {
             setShowDeleteModal, showAddModal, setShowAddModal} = useContext(modalsContext)
     const {contacts} = useContext(ClientContext)
 
-    console.log(showEditModal)
+    const setFocusContactId = (contactId: string) => {
+        localStorage.setItem("@FOCUS_CONTACT_ID", contactId)
+    }
 
     return (
         <ContactListDiv>
@@ -54,8 +56,8 @@ const ContactList = () => {
                                     <span>{contact.phone}</span>
                                 </div>
                                 <div className="cardOps">
-                                    <AiOutlineEdit size={32} color="#1AD300" onClick={() => setShowEditModal(true)}></AiOutlineEdit>
-                                    <MdDeleteOutline size={32} color="#1AD300" onClick={() => setShowDeleteModal(true)}></MdDeleteOutline>
+                                    <AiOutlineEdit size={32} color="#1AD300" onClick={() => {setShowEditModal(true), setFocusContactId(contact.id)}}></AiOutlineEdit>
+                                    <MdDeleteOutline size={32} color="#1AD300" onClick={() => {setShowDeleteModal(true), setFocusContactId(contact.id)}}></MdDeleteOutline>
                                 </div>
                             </li>
                         )

@@ -34,6 +34,12 @@ interface iContact {
     client: iClient
 }
 
+export interface iContactEdit {
+    full_name?: string,
+    email?: string,
+    phone?: number,
+}
+
 interface iClientContext {
     client: iClient | null,
     setClient: (value: iClient) => void,
@@ -42,7 +48,9 @@ interface iClientContext {
     clientLogin(data: iClientLogin): Promise<void>,
     clientRegister(data: iClientRegister): Promise<void>,
     populateContacts: () => void,
-    addContact(data: Omit<iClientRegister, "password">): Promise<void>
+    addContact(data: Omit<iClientRegister, "password">): Promise<void>,
+    editContact(data: iContactEdit): Promise<void>,
+    deleteContact: () => void
 }
 
 export const ClientContext = createContext<iClientContext>({} as iClientContext)
@@ -51,6 +59,7 @@ export const ClientProvider = ({children}: iProvider) => {
     const [client, setClient] = useState<iClient | null>(null)
     const [contacts, setContacts] = useState([] as iContact[])
 
+    /*
     useEffect(() => {
         (async () => {
             const token = localStorage.getItem("@TOKEN");
@@ -67,7 +76,7 @@ export const ClientProvider = ({children}: iProvider) => {
               }
             }
           })()
-    }, [])
+    }, [])*/
 
     const populateContacts = async (): Promise<void> => {
         const token = localStorage.getItem("@TOKEN")
@@ -124,9 +133,42 @@ export const ClientProvider = ({children}: iProvider) => {
         }
     }
 
+    const editContact = async (editObj: iContactEdit): Promise<void> => {
+        const token = localStorage.getItem("@TOKEN");
+        const contactId = localStorage.getItem("@FOCUS_CONTACT_ID")
+        try {
+            const request = await api.patch(`/clients/contacts/edit/${contactId}`, editObj, {
+                headers: {Authorization: `Bearer ${token}`}
+            })
+            contacts.forEach((con) => {
+                if (con.id === contactId) {
+                    con.full_name = request.data.full_name
+                    con.email = request.data.email
+                    con.phone = request.data.phone
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteContact = async (): Promise<void> => {
+        const token = localStorage.getItem("@TOKEN");
+        const contactId = localStorage.getItem("@FOCUS_CONTACT_ID")
+        try {
+            const request = await api.delete(`/clients/contacts/delete/${contactId}`, {
+                headers: {Authorization: `Bearer ${token}`}
+            })
+            const deletedObjArr = contacts.filter((con) => con.id !== contactId)
+            setContacts(deletedObjArr)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return(
         <ClientContext.Provider value={{
-            client, setClient, contacts, setContacts, clientLogin, clientRegister, populateContacts, addContact
+            client, setClient, contacts, setContacts, clientLogin, clientRegister, populateContacts, addContact, editContact, deleteContact
         }}>
             {children}
         </ClientContext.Provider>
