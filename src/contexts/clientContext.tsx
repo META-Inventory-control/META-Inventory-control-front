@@ -59,25 +59,6 @@ export const ClientProvider = ({children}: iProvider) => {
     const [client, setClient] = useState<iClient | null>(null)
     const [contacts, setContacts] = useState([] as iContact[])
 
-    /*
-    useEffect(() => {
-        (async () => {
-            const token = localStorage.getItem("@TOKEN");
-            const clientId = localStorage.getItem("@CLIENTID");
-            if (token) {
-              try {
-                const request = await api.get(`/clients/${clientId}`, {
-                  headers: { Authorization: `Bearer ${token}` },
-                });
-                setClient(request.data);
-                populateContacts()
-              } catch (error) {
-                localStorage.clear();
-              }
-            }
-          })()
-    }, [])*/
-
     const populateContacts = async (): Promise<void> => {
         const token = localStorage.getItem("@TOKEN")
         try {
@@ -99,14 +80,17 @@ export const ClientProvider = ({children}: iProvider) => {
             populateContacts()
         } catch (error) {
             console.log(error)
+            alert("Credenciais incorretas")
         }
     }
     
     const clientRegister = async (data: iClientRegister): Promise<void> => {
         try {
             const request = await api.post("/clients", data)
+            alert("Registro concluído")
         } catch (error) {
             console.log(error)
+            alert("Erro ao realizar registro")
         }
     }
 
@@ -128,8 +112,10 @@ export const ClientProvider = ({children}: iProvider) => {
                     client: client!
                 }
             ])
+            alert("Contato adicionado")
         } catch (error) {
             console.log(error)
+            alert("Erro ao adicionar contato")
         }
     }
 
@@ -147,8 +133,10 @@ export const ClientProvider = ({children}: iProvider) => {
                     con.phone = request.data.phone
                 }
             })
+            alert("Contato editado")
         } catch (error) {
             console.log(error)
+            alert("Falha ao editar contato")
         }
     }
 
@@ -161,8 +149,10 @@ export const ClientProvider = ({children}: iProvider) => {
             })
             const deletedObjArr = contacts.filter((con) => con.id !== contactId)
             setContacts(deletedObjArr)
+            alert("Contato deletado")
         } catch (error) {
             console.log(error)
+            alert("Falha ao deletar contato")
         }
     }
 
