@@ -2,12 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { ClientProvider } from './contexts/clientContext'
+import { UserProvider } from './contexts/userContext'
 import { ModalsProvider } from './contexts/modalsContext'
 import ErrorPage from './error'
 import LoginPage from './pages/login'
-import { RegisterPage } from './pages/register'
 import { Dashboard } from './pages/dashboard'
+import { ProductProvider } from './contexts/productsContext'
 
 const router = createBrowserRouter([
   {
@@ -20,10 +20,6 @@ const router = createBrowserRouter([
     element: <LoginPage/>
   },
   {
-    path: "register",
-    element: <RegisterPage/>
-  },
-  {
     path: "dashboard",
     element: <Dashboard/>
   }
@@ -31,10 +27,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ClientProvider>
-      <ModalsProvider>
-        <RouterProvider router={router}></RouterProvider>
-      </ModalsProvider>
-    </ClientProvider>
+    <UserProvider>
+      <ProductProvider>
+        <ModalsProvider>
+          <RouterProvider router={router}></RouterProvider>
+        </ModalsProvider>
+      </ProductProvider>
+    </UserProvider>
   </React.StrictMode>,
 )

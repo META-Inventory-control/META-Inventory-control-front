@@ -7,9 +7,9 @@ function App() {
   return (
     <main className="App">
       <div className="AppInfo">
-        <img src="./koi-fish.png" alt="" className="logoLanding"/>
-        <h1 className="landingTitle">Bem vindo a Koi Fish</h1>
-        <span className="landingDescription">O melhor ambiente para você organizar seus contatos.</span>
+        <img src="./image.png" alt="" className="logoLanding"/>
+        <h1 className="landingTitle">Bem vindo a Meta IC</h1>
+        <span className="landingDescription">Controle de inventário.</span>
         <button className="nextBtn" onClick={() => navigate("/login")}>Avançar</button>
       </div>
     </main>

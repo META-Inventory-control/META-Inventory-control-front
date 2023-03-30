@@ -3,7 +3,7 @@
 .App {
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    background-image: linear-gradient(to right top, #070d57, #4c4280, #857daa, #c1bcd4, #ffffff);
     display: flex;
     justify-content: center; 
 }
@@ -42,7 +42,7 @@
 }
 
 .nextBtn:hover {
-    background-color: #1AD300;
+    background-color: var(--Color-brand-1);
     transition: 700ms;
     color: white;
 }

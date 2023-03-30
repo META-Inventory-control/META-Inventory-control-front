@@ -8,7 +8,7 @@ export const LoginDiv = styled.div`
         width: 86%;
         height: 400px;
         margin: 0 auto;
-        border: 3px solid #1AD300;
+        border: 3px solid var(--Color-light);
         border-radius: 30px;
         padding: 20px 0 0 0;
 
@@ -61,11 +61,12 @@ export const LoginDiv = styled.div`
         button {
             width: 100%;
             height: 38px;
-            border: 1.5px solid #1AD300;
+            border: 1.5px solid #127cf1;
             border-radius: 8px;
             background-color: transparent;
             color: white;
             font-size: 16px;
+            margin-top: 15px;
             cursor: pointer;
         }
 
@@ -78,10 +79,10 @@ export const LoginDiv = styled.div`
         }
 
         button:hover {
-            background-color: #16B400;
+            background-color: var(--Color-brand-2);
             transform: scale(1.02);
             transition: 650ms;
-            box-shadow: rgba(26, 211, 0, 0.3) 0px 4px 12px;
+            box-shadow: rgba(18, 124, 241, 0.1) 0px 4px 12px;
         }
 
         button:not(:hover) {

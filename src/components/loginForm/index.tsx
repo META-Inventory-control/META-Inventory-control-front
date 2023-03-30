@@ -1,21 +1,19 @@
 import { LoginDiv } from "./styles"
 import { useContext } from "react"
-import { ClientContext } from "../../contexts/clientContext"
+import { UserContext } from "../../contexts/userContext"
 import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
-import { iClientLogin } from "../../contexts/clientContext"
-import { Link } from "react-router-dom"
-import { useState } from "react"
+import { iUserLogin } from "../../contexts/userContext"
 import { useNavigate } from "react-router-dom"
 
 const LoginForm = () => {
-    const {clientLogin} = useContext(ClientContext)
+    const {userLogin} = useContext(UserContext)
 
     const navigate = useNavigate()
 
     const loginFormSchema = yup.object().shape({
-        email: yup.string().email("Digite um email").required("Email obrigatório"),
+        username: yup.string().required("Username obrigatório"),
         password: yup.string().required("Senha obrigatória")
     })
 
@@ -23,10 +21,10 @@ const LoginForm = () => {
         register,
         handleSubmit,
         formState: {errors},
-    } = useForm<iClientLogin>({resolver: yupResolver(loginFormSchema)})
+    } = useForm<iUserLogin>({resolver: yupResolver(loginFormSchema)})
 
-    const logClientIn = async (data: iClientLogin) => {
-        await clientLogin(data)
+    const logClientIn = async (data: iUserLogin) => {
+        await userLogin(data)
         const logged = localStorage.getItem("@TOKEN")
         if (logged) {
             navigate("/dashboard")
@@ -36,14 +34,13 @@ const LoginForm = () => {
     return (
         <LoginDiv>
             <main>
-                <img src="./koi-fish.png" alt="" />
+                <img src="./image.png" alt="" />
                 <h2>Login</h2>
                 <form action="" onSubmit={handleSubmit(logClientIn)}>
-                    <label>E-mail:</label>
-                    <input type="text" placeholder={errors.email?.message} {...register("email")}/>
+                    <label>Username:</label>
+                    <input type="text" placeholder={errors.username?.message} {...register("username")}/>
                     <label>Senha:</label>
                     <input type="password" placeholder={errors.password?.message} className="passwordInput" {...register("password")}/>
-                    <Link to="/register">Crie sua conta aqui</Link>
                     <button type="submit">Login</button>
                 </form>
             </main>

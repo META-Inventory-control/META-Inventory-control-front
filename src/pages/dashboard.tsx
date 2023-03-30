@@ -1,19 +1,19 @@
-import SideBar from "../components/sidebar"
+
 import { StyledDashboardMain } from "./styles/dashboard-style"
-import ContactList from "../components/contactList"
 import { useEffect } from "react"
 import { useContext } from "react"
-import { ClientContext } from "../contexts/clientContext"
+import { ProductsContext } from "../contexts/productsContext"
 import { useNavigate } from "react-router-dom"
 
 const Dashboard = () => {
-    const {populateContacts} = useContext(ClientContext)
+    const {populateProducts} = useContext(ProductsContext)
     const navigate = useNavigate()
 
+    
     useEffect(() => {
         const token = localStorage.getItem("@TOKEN")
         if (token) {
-            populateContacts()
+            populateProducts()
         } else {
             localStorage.clear()
             navigate("/login")
@@ -22,8 +22,11 @@ const Dashboard = () => {
 
     return (
         <StyledDashboardMain>
-            <SideBar></SideBar>
-            <ContactList></ContactList>
+            <div className="a">Side div</div>
+            <div className="b">
+                Content
+                <div className="c">Header</div>
+            </div>
         </StyledDashboardMain>
     )
 }
