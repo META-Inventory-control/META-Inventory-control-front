@@ -2,27 +2,30 @@ import styled from "styled-components";
 
 export const StyledDashboardMain = styled.main`
 
-    width: 100vw;
     min-height: 100vh;
+    margin: 0;
 
     @media (min-width: 1000px) {
         display: grid;
         grid-template-columns: 20% 80%;
 
-        .a {
-            background-color: black;
-            opacity: 0.4;
+        .sideBarContainer {
+            height: 100vh;
+            opacity: 1;
         }
 
-        .b {
-           background-color: blue;
-            opacity: 0.3; 
-            display: grid;
-            grid-template-rows: 10% 90%;
+        .mainContainer {
+            // PROBLEMA DE SCROLL HORIZONTAL AQUI (height maior que 100vh | tela)
+            // height: 2000px;
         }
 
-        .c {
-            background-color: red;
+        .admContainer {
+            background-color: blue;
+            height: 100px;
+        }
+
+        .contentContainer {
+            padding: 50px 80px;
         }
     }
 `
