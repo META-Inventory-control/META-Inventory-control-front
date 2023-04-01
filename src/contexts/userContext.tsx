@@ -37,7 +37,8 @@ interface iUserContextRes {
     user: iUser | null,
     userLogin: (data: iUserLogin) => Promise<void>,
     createUser: (data: iCreateUser) => Promise<void>,
-    editUser: (data: iUserEdit) => Promise<void>
+    editUser: (data: iUserEdit) => Promise<void>,
+    populateUser: (user_id: string) => Promise<void>
 }
 
 export const UserContext = createContext<iUserContextRes>({} as iUserContextRes)
@@ -48,16 +49,17 @@ export const UserProvider = ({children}: iProvider) => {
     const userLogin = async (data: iUserLogin): Promise<void> => {
         try {
             const request = await api.post("/login/", data)
-            localStorage.setItem("@TOKEN", request.data.access);
+            window.localStorage.setItem("@TOKEN", request.data.access);
             const decodedToken:any = decodeToken(request.data.access)
             populateUser(decodedToken.user_id)
+            window.localStorage.setItem("@USER_ID", decodedToken.user_id);
         } catch (error) {
             console.log(error)
         }
     }
 
     const populateUser = async (user_id: string): Promise<void> => {
-        const token = localStorage.getItem("@TOKEN")
+        const token = window.localStorage.getItem("@TOKEN")
         try {
             const request = await api.get(`/users/${user_id}/`, {
                 headers: {Authorization: `Bearer ${token}`}
@@ -75,7 +77,7 @@ export const UserProvider = ({children}: iProvider) => {
     }
 
     const createUser = async (data: iCreateUser): Promise<void> => {
-        const token = localStorage.getItem("@TOKEN")
+        const token = window.localStorage.getItem("@TOKEN")
         try {
             const request = await api.post(`/users/create/`, data, {
                 headers: {Authorization: `Bearer ${token}`}
@@ -86,7 +88,7 @@ export const UserProvider = ({children}: iProvider) => {
     }
 
     const editUser = async (data: iUserEdit): Promise<void> => {
-        const token = localStorage.getItem("@TOKEN")
+        const token = window.localStorage.getItem("@TOKEN")
         try {
             const request = await api.patch(`/users/${user?.id}/`, data, {
                 headers: {Authorization: `Bearer ${token}`}
@@ -98,7 +100,7 @@ export const UserProvider = ({children}: iProvider) => {
     }
 
     return(
-        <UserContext.Provider value={{user, userLogin, createUser, editUser}}>
+        <UserContext.Provider value={{user, userLogin, createUser, editUser, populateUser}}>
             {children}
         </UserContext.Provider>
     )

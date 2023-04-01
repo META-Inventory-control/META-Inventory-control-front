@@ -14,10 +14,11 @@ import EditModal from "../components/editModal"
 import AddUserModal from "../components/createUserModal"
 import { SearchBar } from "../components/searchBar"
 import EditUserModal from "../components/editUserModal"
+import { decodeToken } from "react-jwt"
 
 const Dashboard = () => {
     const {populateProducts} = useContext(ProductsContext)
-    const {user} = useContext(UserContext)
+    const {user, populateUser} = useContext(UserContext)
 
     const {showAddModal, setShowAddModal, showEditModal, setShowEditModal,
     showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal} = useContext(ModalsContext)
@@ -25,9 +26,17 @@ const Dashboard = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        const token = localStorage.getItem("@TOKEN")
-        if (token) {
-            populateProducts()
+        const user_id = window.localStorage.getItem("@USER_ID")
+        const token = window.localStorage.getItem("@TOKEN")
+        if (token && user_id) {
+            const decodedToken: any = decodeToken(token)
+            if (decodedToken) {
+                populateUser(user_id)
+                populateProducts()
+            } else {
+                localStorage.clear()
+                navigate("/login")
+            }
         } else {
             localStorage.clear()
             navigate("/login")
