@@ -44,4 +44,34 @@ export const StyledSideBarSection = styled.section`
     .option:not(:hover) {
         transition: 500ms;
     }
+
+    @media (max-width: 1000px) {
+        height: 160px;
+        width: 100%;
+        position: relative;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .logoDiv {
+            img {
+                display: none;
+            }
+        }
+
+        .optionsDiv {
+                margin: 0;
+            }
+
+        .option {
+            gap: 00px;
+            margin-top: 0px;
+        }
+
+        .navAside {
+            margin-top: 0;
+        }
+    }
+    
 `

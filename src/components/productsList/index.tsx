@@ -24,7 +24,7 @@ export const ProductsList = () => {
                                 {product.image ? (
                                     <img src={product.image} alt="" />
                                 ) : (
-                                    <img src="https://artsmidnorthcoast.com/wp-content/uploads/2014/05/no-image-available-icon-6.png" alt="" />
+                                    <img src="https://www.ncenet.com/wp-content/uploads/2020/04/no-image-png-2.png" alt="" />
                                 )}
                             </div>
                             <div className="contentDiv">

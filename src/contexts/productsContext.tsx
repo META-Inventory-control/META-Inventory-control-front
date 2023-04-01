@@ -77,10 +77,11 @@ export const ProductProvider = ({children}: iProvider) => {
                     final_cost: request.data.final_cost
                 }
             ])
+            console.log(data)
             toast.success("Produto criado!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
-            toast.success("Erro ao criar produto!", {autoClose: 3000})
+            toast.error("Erro ao criar produto!", {autoClose: 3000})
         }
     }
 

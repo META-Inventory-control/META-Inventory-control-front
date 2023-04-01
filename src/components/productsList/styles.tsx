@@ -97,5 +97,9 @@ export const StyledProductsListUl = styled.ul`
             }
         }
     }
+
+    @media (max-width: 615px) {
+        justify-content: center;
+    }
     
 `
