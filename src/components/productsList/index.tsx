@@ -6,18 +6,18 @@ import { useContext } from "react"
 import { ModalsContext } from "../../contexts/modalsContext"
 
 export const ProductsList = () => {
-    const {products} = useContext(ProductsContext)
+    const {products, filteredProducts} = useContext(ProductsContext)
     const {user} = useContext(UserContext)
     const {setShowEditModal} = useContext(ModalsContext)
 
     const setFocusProductId = (productId: string) => {
         localStorage.setItem("@FOCUS_PRODUCT_ID", productId)
     }
- 
+    
     return (
         <StyledProductsListUl>
-            { products ? (
-                products.map((product) => {
+            { filteredProducts?.length ? (
+                filteredProducts.map((product) => {
                     return (
                         <li className="productCard" key={product.id}>
                             <div className="imgDiv">
@@ -55,8 +55,45 @@ export const ProductsList = () => {
                     )
                 })
             ) : (
-                <></>
-            ) }
+                products?.map((product) => {
+                    return (
+                        <li className="productCard" key={product.id}>
+                            <div className="imgDiv">
+                                <img src={product.image} alt="" />
+                            </div>
+                            <div className="contentDiv">
+                                <div>
+                                    <h2>{product.name}</h2>
+                                    { user?.is_superuser ? (
+                                        <BsThreeDotsVertical size={30} color={"black"} onClick={() => {setShowEditModal(true), setFocusProductId(product.id)}}></BsThreeDotsVertical>  
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                                <div>
+                                    { user?.is_superuser ? (
+                                        <>
+                                            <span>Valor de custo:</span>
+                                            <span>R${product.entry_cost}</span>
+                                        </>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                                <div>
+                                    <span>Quantidade:</span>
+                                    <span>{product.qty}x</span>
+                                </div>
+                                <div>
+                                    <span>Valor final:</span>
+                                    <span>R${product.final_cost}</span>
+                                </div>
+                            </div>
+                        </li>
+                    )
+                })
+            )}
         </StyledProductsListUl>
     )
+
 }

@@ -16,6 +16,12 @@ export interface iUser {
     email: string
 }
 
+export interface iUserEdit {
+    password?: string,
+    username?: string,
+    email?: string
+}
+
 export interface iCreateUser {
     is_superuser?: boolean,
     username: string,
@@ -30,7 +36,8 @@ interface iProvider {
 interface iUserContextRes {
     user: iUser | null,
     userLogin: (data: iUserLogin) => Promise<void>,
-    createUser: (data: iCreateUser) => Promise<void>
+    createUser: (data: iCreateUser) => Promise<void>,
+    editUser: (data: iUserEdit) => Promise<void>
 }
 
 export const UserContext = createContext<iUserContextRes>({} as iUserContextRes)
@@ -78,8 +85,20 @@ export const UserProvider = ({children}: iProvider) => {
         }
     }
 
+    const editUser = async (data: iUserEdit): Promise<void> => {
+        const token = localStorage.getItem("@TOKEN")
+        try {
+            const request = await api.patch(`/users/${user?.id}/`, data, {
+                headers: {Authorization: `Bearer ${token}`}
+            })
+            console.log("sucesso")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return(
-        <UserContext.Provider value={{user, userLogin, createUser}}>
+        <UserContext.Provider value={{user, userLogin, createUser, editUser}}>
             {children}
         </UserContext.Provider>
     )

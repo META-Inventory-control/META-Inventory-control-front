@@ -12,11 +12,16 @@ import { ModalsContext } from "../contexts/modalsContext"
 import AddProductModal from "../components/addModal"
 import EditModal from "../components/editModal"
 import AddUserModal from "../components/createUserModal"
+import { SearchBar } from "../components/searchBar"
+import EditUserModal from "../components/editUserModal"
 
 const Dashboard = () => {
     const {populateProducts} = useContext(ProductsContext)
     const {user} = useContext(UserContext)
-    const {showAddModal, setShowAddModal, showEditModal, setShowEditModal, showAddUserModal, setShowAddUserModal} = useContext(ModalsContext)
+
+    const {showAddModal, setShowAddModal, showEditModal, setShowEditModal,
+    showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal} = useContext(ModalsContext)
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -54,12 +59,20 @@ const Dashboard = () => {
                     <></>
                 )}
 
+                { showEditUserModal ? (
+                    <EditUserModal setShowEditUserModal={setShowEditUserModal}></EditUserModal>
+                ) : (
+                    <></>
+                )}
+
+
                 { user?.is_superuser ? (
                     <div className="admContainer"><AdmBar></AdmBar></div>
                 ) : (
                     <></>
                 )}
                 <div className="contentContainer">
+                    <SearchBar></SearchBar>
                     <ProductsList></ProductsList>
                 </div>
             </div>

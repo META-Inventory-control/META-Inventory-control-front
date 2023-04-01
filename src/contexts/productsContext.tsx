@@ -34,7 +34,9 @@ interface iProductContextRes {
     populateProducts: () => Promise<void>,
     addProduct: (data: iProductAdd) => Promise<void>,
     editProduct: (data: iProductEdit) => Promise<void>,
-    deleteProduct: () => Promise<void>
+    deleteProduct: () => Promise<void>,
+    filteredProducts: iProduct[] | null,
+    setFilteredProducts: (value: iProduct[]) => void
 }
 
 
@@ -43,6 +45,7 @@ export const ProductsContext = createContext<iProductContextRes>({} as iProductC
 
 export const ProductProvider = ({children}: iProvider) => {
     const [products, setProducts] = useState([] as iProduct[])
+    const [filteredProducts, setFilteredProducts] = useState([] as iProduct[])
 
     const populateProducts = async (): Promise<void> => {
         const token = localStorage.getItem("@TOKEN")
@@ -113,7 +116,7 @@ export const ProductProvider = ({children}: iProvider) => {
     }
 
     return(
-        <ProductsContext.Provider value={{products, populateProducts, addProduct, editProduct, deleteProduct}}>
+        <ProductsContext.Provider value={{products, populateProducts, addProduct, editProduct, deleteProduct, filteredProducts, setFilteredProducts}}>
             {children}
         </ProductsContext.Provider>
     )

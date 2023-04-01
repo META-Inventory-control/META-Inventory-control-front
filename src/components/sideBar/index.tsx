@@ -2,8 +2,19 @@ import { StyledSideBarSection } from "./styles"
 import {BsBoxSeam} from "react-icons/bs"
 import {CgProfile} from "react-icons/cg"
 import {BiLogOut} from "react-icons/bi"
+import { ModalsContext } from "../../contexts/modalsContext"
+import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 
 export const SideBar = () => {
+    const {setShowEditUserModal} = useContext(ModalsContext)
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        localStorage.clear()
+        navigate("/login")
+    }
+
     return(
         <StyledSideBarSection>
             <div className="logoDiv">
@@ -16,11 +27,11 @@ export const SideBar = () => {
                 </div>
             </aside>
             <div className="optionsDiv">
-                <div  className="option">
+                <div  className="option" onClick={() => setShowEditUserModal(true)}>
                     <CgProfile size={30}></CgProfile>
                     <h4>Perfil</h4>
                 </div>
-                <div  className="option">
+                <div  className="option" onClick={() => handleLogout()}>
                     <BiLogOut size={30}></BiLogOut>
                     <h4>Log out</h4>
                 </div>

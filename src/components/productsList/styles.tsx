@@ -5,6 +5,12 @@ export const StyledProductsListUl = styled.ul`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    overflow-y: scroll;
+    max-height: 754px;
+
+    ::-webkit-scrollbar {
+        width: 1px;
+    }
     
     span, h2 {
         color: black;
@@ -14,7 +20,7 @@ export const StyledProductsListUl = styled.ul`
         height: 350px;
         width: 305px;
         border-radius: 26px;
-        margin-bottom: 30px;
+        margin-top: 26px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         .imgDiv {
