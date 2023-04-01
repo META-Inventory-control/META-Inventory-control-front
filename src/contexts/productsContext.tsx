@@ -2,6 +2,7 @@ import api from "../services/api";
 import { createContext, useEffect } from "react";
 import { useState } from "react";
 import { ReactNode } from "react";
+import { toast } from "react-toastify"
 
 interface iProvider {
     children: ReactNode
@@ -76,8 +77,10 @@ export const ProductProvider = ({children}: iProvider) => {
                     final_cost: request.data.final_cost
                 }
             ])
+            toast.success("Produto criado!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
+            toast.success("Erro ao criar produto!", {autoClose: 3000})
         }
     }
 
@@ -95,8 +98,10 @@ export const ProductProvider = ({children}: iProvider) => {
                     prod.qty = request.data.qty
                 }
             })
+            toast.success("Sucesso ao editar produto!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
+            toast.error("Erro ao editar produto!", {autoClose: 3000})
         }
     }
 
@@ -109,9 +114,10 @@ export const ProductProvider = ({children}: iProvider) => {
             })
             const deletedObjArr = products.filter((prod) => prod.id !== product_id)
             setProducts(deletedObjArr)
+            toast.warn("Produto deletado!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
-            alert("Falha ao deletar contato")
+            toast.error("Erro ao deletar produto!", {autoClose: 3000})
         }
     }
 

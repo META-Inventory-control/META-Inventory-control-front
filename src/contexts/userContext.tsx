@@ -3,6 +3,7 @@ import { createContext } from "react";
 import { useState } from "react";
 import { ReactNode } from "react";
 import { decodeToken } from "react-jwt";
+import {toast} from "react-toastify"
 
 export interface iUserLogin {
     username: string,
@@ -53,8 +54,10 @@ export const UserProvider = ({children}: iProvider) => {
             const decodedToken:any = decodeToken(request.data.access)
             populateUser(decodedToken.user_id)
             window.localStorage.setItem("@USER_ID", decodedToken.user_id);
+            toast.success("Login bem sucedido!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
+            toast.error("Credenciais incorretas!", {autoClose: 3000})
         }
     }
 
@@ -82,8 +85,10 @@ export const UserProvider = ({children}: iProvider) => {
             const request = await api.post(`/users/create/`, data, {
                 headers: {Authorization: `Bearer ${token}`}
             })
+            toast.success("Usuário criado!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
+            toast.error("Erro ao criar usuário!", {autoClose: 3000})
         }
     }
 
@@ -93,9 +98,10 @@ export const UserProvider = ({children}: iProvider) => {
             const request = await api.patch(`/users/${user?.id}/`, data, {
                 headers: {Authorization: `Bearer ${token}`}
             })
-            console.log("sucesso")
+            toast.success("Sucesso ao editar usuário!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
+            toast.error("Erro ao editar usuário!", {autoClose: 3000})
         }
     }
 
