@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledDeleteModal = styled.div`
+export const StyledAddModal = styled.div`
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -19,7 +19,7 @@ export const StyledDeleteModal = styled.div`
     main {
         width: 86%;
         background-color: #2E2A2A;
-        border: 2px solid red;
+        border: 2px solid #1AD300;
         border-radius: 18px;
         position: relative;
 
@@ -51,13 +51,39 @@ export const StyledDeleteModal = styled.div`
             p {
                 font-size: 12px;
                 text-align: center;
-                margin-bottom: 20px;
             }
+        }
 
+        form {
+            padding: 24px 18px;
+    
+            label {
+                font-size: 16px;
+            }
+    
+            input {
+                width: 100%;
+                padding: 8px 10px;
+                box-sizing: border-box;
+                border: 1px solid transparent;
+                border-radius: 8px;
+                margin: 14px 0 30px 0;
+                color: black;
+    
+                ::placeholder {
+                    color: red;
+                    opacity: 0.75;
+                }
+            }
+    
+            .lastInput{
+                margin: 14px 0 22px 0;
+            }
+    
             button {
                 width: 100%;
                 height: 38px;
-                border: 1.5px solid red;
+                border: 1.5px solid #1AD300;
                 border-radius: 8px;
                 background-color: transparent;
                 color: white;
@@ -66,14 +92,14 @@ export const StyledDeleteModal = styled.div`
             }
 
             button:hover {
-                background-color: red;
+                background-color: #16B400;
                 transition: 600ms;
             }
 
             button:not(:hover) {
                 transition: 400ms;
             }
-        }
+    }
 
     @media (min-width: 1000px) {
         width: 30%;

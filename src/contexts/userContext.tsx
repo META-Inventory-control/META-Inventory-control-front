@@ -16,13 +16,21 @@ export interface iUser {
     email: string
 }
 
+export interface iCreateUser {
+    is_superuser?: boolean,
+    username: string,
+    email: string,
+    password: string
+}
+
 interface iProvider {
     children: ReactNode
 }
 
 interface iUserContextRes {
     user: iUser | null,
-    userLogin: (data: iUserLogin) => Promise<void>
+    userLogin: (data: iUserLogin) => Promise<void>,
+    createUser: (data: iCreateUser) => Promise<void>
 }
 
 export const UserContext = createContext<iUserContextRes>({} as iUserContextRes)
@@ -59,8 +67,19 @@ export const UserProvider = ({children}: iProvider) => {
         }
     }
 
+    const createUser = async (data: iCreateUser): Promise<void> => {
+        const token = localStorage.getItem("@TOKEN")
+        try {
+            const request = await api.post(`/users/create/`, data, {
+                headers: {Authorization: `Bearer ${token}`}
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return(
-        <UserContext.Provider value={{user, userLogin}}>
+        <UserContext.Provider value={{user, userLogin, createUser}}>
             {children}
         </UserContext.Provider>
     )

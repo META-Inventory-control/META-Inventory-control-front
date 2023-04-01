@@ -2,61 +2,67 @@ import { StyledEditModal } from "./styles"
 import * as yup from "yup"
 import {useForm} from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { iClientRegister } from "../../contexts/clientContext"
-import { iContactEdit } from "../../contexts/clientContext"
 import { useContext } from "react"
-import { ClientContext } from "../../contexts/clientContext"
+import { ProductsContext } from "../../contexts/productsContext"
+import { iProductEdit } from "../../contexts/productsContext"
 
 interface iSetModal {
     setShowEditModal: (value: boolean) => void
 }
 
 const EditModal = ({setShowEditModal}: iSetModal) => {
-    const {editContact} = useContext(ClientContext)
+    const {editProduct, deleteProduct} = useContext(ProductsContext)
 
-    const editContactFormSchema = yup.object().shape({
-        full_name: yup.string().optional(),
-        email: yup.string().email("Digite um email").optional(),
-        phone: yup.string().optional()
+    const editProductFormSchema = yup.object().shape({
+        name: yup.string().optional(),
+        entry_cost: yup.string().optional(),
+        qty: yup.string().optional()
     })
 
     const {
         register,
         handleSubmit,
         formState: {errors},
-    } = useForm<iContactEdit>({resolver: yupResolver(editContactFormSchema)})
+    } = useForm<iProductEdit>({resolver: yupResolver(editProductFormSchema)})
 
-    const handleEditObj = (data: iContactEdit) => {
+    const handleEditObj = (data: iProductEdit) => {
         let editObj: any = {}
         Object.entries(data).forEach(([key, value]) => {
             if (value !== "") {
                 editObj[key] = value
             }
         })
-        editContact(editObj)
+        if (editObj.entry_cost) {
+            editObj.entry_cost = parseInt(editObj.entry_cost)
+        }
+        if (editObj.qty) {
+            editObj.qty = parseInt(editObj.qty)
+        }
+        editProduct(editObj)
     }
 
-    const removeFocusContactId = () => {
-        localStorage.removeItem("@FOCUS_CONTACT_ID")
+    const removeFocusProductId = () => {
+        localStorage.removeItem("@FOCUS_PRODUCT_ID")
     }
 
     return (
         <StyledEditModal>
             <main>
-                <button className="closeModal" onClick={() => {setShowEditModal(false), removeFocusContactId()}}>X</button>
+                <button className="closeModal" onClick={() => {setShowEditModal(false), removeFocusProductId()}}>X</button>
                 <div>
                     <h2>Editar contato</h2>
                     <p>Para não alteração, deixe o campo em branco.</p>
                 </div>
                 <form onSubmit={handleSubmit(handleEditObj)}>
-                    <label>Nome completo:</label>
-                    <input type="text" placeholder={errors.full_name?.message} {...register("full_name")}/>
-                    <label>E-mail:</label>
-                    <input type="text" placeholder={errors.email?.message} {...register("email")}/>
-                    <label>Telefone:</label>
-                    <input type="text" placeholder={errors.phone?.message} {...register("phone")}/>
+                    <label>Nome:</label>
+                    <input type="text" placeholder={errors.name?.message} {...register("name")}/>
+                    <label>Valor de custo:</label>
+                    <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")}/>
+                    <label>Quantidade:</label>
+                    <input type="text" placeholder={errors.qty?.message} {...register("qty")}/>
                     <button type="submit">Salvar</button>
                 </form>
+                <button onClick={() => deleteProduct()}>Deletar produto</button>
             </main>
         </StyledEditModal>
     )

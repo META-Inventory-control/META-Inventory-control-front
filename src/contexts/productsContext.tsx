@@ -7,6 +7,19 @@ interface iProvider {
     children: ReactNode
 }
 
+export interface iProductAdd {
+    name: string,
+	entry_cost: number,
+	qty: number,
+    image: File | undefined
+}
+
+export interface iProductEdit {
+    name?: string,
+	entry_cost?: number,
+	qty?: number,
+}
+
 interface iProduct {
     id: string,
 	final_cost: number,
@@ -18,7 +31,10 @@ interface iProduct {
 
 interface iProductContextRes {
     products: iProduct[] | null,
-    populateProducts: () => Promise<void>
+    populateProducts: () => Promise<void>,
+    addProduct: (data: iProductAdd) => Promise<void>,
+    editProduct: (data: iProductEdit) => Promise<void>,
+    deleteProduct: () => Promise<void>
 }
 
 
@@ -26,7 +42,7 @@ export const ProductsContext = createContext<iProductContextRes>({} as iProductC
 
 
 export const ProductProvider = ({children}: iProvider) => {
-    const [products, setProducts] = useState<iProduct[] | null>(null)
+    const [products, setProducts] = useState([] as iProduct[])
 
     const populateProducts = async (): Promise<void> => {
         const token = localStorage.getItem("@TOKEN")
@@ -40,8 +56,64 @@ export const ProductProvider = ({children}: iProvider) => {
         }
     }
 
+    const addProduct = async (data: iProductAdd): Promise<void> => {
+        const token = localStorage.getItem("@TOKEN")
+        try {
+            const request = await api.post("/products/", data, {
+                headers: {Authorization: `Bearer ${token}`}
+            })
+            setProducts([
+                ...products,
+                {
+                    name: request.data.name,
+                    entry_cost: request.data.entry_cost,
+                    qty: request.data.qty,
+                    image: request.data.image,
+                    id: request.data.id,
+                    final_cost: request.data.final_cost
+                }
+            ])
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const editProduct = async (data: iProductEdit): Promise<void> => {
+        const token = localStorage.getItem("@TOKEN")
+        const product_id = localStorage.getItem("@FOCUS_PRODUCT_ID")
+        try {
+            const request = await api.patch(`/products/${product_id}/`, data, {
+                headers: {Authorization: `Bearer ${token}`}
+            })
+            products.forEach((prod) => {
+                if (prod.id === product_id) {
+                    prod.name = request.data.name
+                    prod.entry_cost = request.data.entry_cost
+                    prod.qty = request.data.qty
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteProduct = async (): Promise<void> => {
+        const token = localStorage.getItem("@TOKEN");
+        const product_id = localStorage.getItem("@FOCUS_PRODUCT_ID")
+        try {
+            const request = await api.delete(`/products/${product_id}/`, {
+                headers: {Authorization: `Bearer ${token}`}
+            })
+            const deletedObjArr = products.filter((prod) => prod.id !== product_id)
+            setProducts(deletedObjArr)
+        } catch (error) {
+            console.log(error)
+            alert("Falha ao deletar contato")
+        }
+    }
+
     return(
-        <ProductsContext.Provider value={{products, populateProducts}}>
+        <ProductsContext.Provider value={{products, populateProducts, addProduct, editProduct, deleteProduct}}>
             {children}
         </ProductsContext.Provider>
     )
