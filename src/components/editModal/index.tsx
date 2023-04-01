@@ -50,7 +50,7 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
             <main>
                 <button className="closeModal" onClick={() => {setShowEditModal(false), removeFocusProductId()}}>X</button>
                 <div>
-                    <h2>Editar contato</h2>
+                    <h2>Editar produto</h2>
                     <p>Para não alteração, deixe o campo em branco.</p>
                 </div>
                 <form onSubmit={handleSubmit(handleEditObj)}>
@@ -62,7 +62,7 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
                     <input type="text" placeholder={errors.qty?.message} {...register("qty")}/>
                     <button type="submit">Salvar</button>
                 </form>
-                <button onClick={() => deleteProduct()}>Deletar produto</button>
+                <button onClick={() => deleteProduct()} className="deleteBtn">Deletar produto</button>
             </main>
         </StyledEditModal>
     )

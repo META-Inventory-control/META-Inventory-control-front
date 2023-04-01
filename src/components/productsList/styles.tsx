@@ -65,6 +65,16 @@ export const StyledProductsListUl = styled.ul`
                 font-size: 22px;
                 width: 88%;
             }
+
+            svg:hover {
+                transform: scale(1.15);
+                transition: 500ms;
+                cursor: pointer;
+            }
+
+            svg:not(:hover) {
+                transition: 500ms;
+            }
         }
 
         .contentDiv div:nth-child(2) {

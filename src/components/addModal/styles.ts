@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledAddModal = styled.div`
+export const StyledAddProductModal = styled.div`
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -19,7 +19,7 @@ export const StyledAddModal = styled.div`
     main {
         width: 86%;
         background-color: #2E2A2A;
-        border: 2px solid #1AD300;
+        border: 2px solid var(--Color-light);
         border-radius: 18px;
         position: relative;
 
@@ -76,14 +76,10 @@ export const StyledAddModal = styled.div`
                 }
             }
     
-            .lastInput{
-                margin: 14px 0 22px 0;
-            }
-    
             button {
                 width: 100%;
                 height: 38px;
-                border: 1.5px solid #1AD300;
+                border: 1.5px solid var(--Color-light);
                 border-radius: 8px;
                 background-color: transparent;
                 color: white;
@@ -92,14 +88,21 @@ export const StyledAddModal = styled.div`
             }
 
             button:hover {
-                background-color: #16B400;
+                background-color: var(--Color-brand-1);
                 transition: 600ms;
             }
 
             button:not(:hover) {
                 transition: 400ms;
             }
+
+            .inputFile {
+                width: 100%;
+                background: white;
+            }
+        
     }
+
 
     @media (min-width: 1000px) {
         width: 30%;

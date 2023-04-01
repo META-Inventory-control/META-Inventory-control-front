@@ -8,7 +8,7 @@ export const AdmBar = () => {
 
     return (
         <StyledAdmBarHeader>
-            <div className="addProduct" onClick={() => setShowAddUserModal(true)}>
+            <div className="addProduct" onClick={() => setShowAddModal(true)}>
                 <AiOutlinePlus size={30} color={"white"}></AiOutlinePlus>
                 <span>Adicionar produto</span>
             </div>

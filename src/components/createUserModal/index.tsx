@@ -27,7 +27,8 @@ const AddUserModal = ({setShowAddUserModal}: iSetModal) => {
     } = useForm<iCreateUser>({resolver: yupResolver(addUserFormSchema)})
 
     const handleUserCreation = (data: iCreateUser) => {
-        createUser(data)
+        //createUser(data)
+        console.log(data)
     }
 
     return (
@@ -43,9 +44,11 @@ const AddUserModal = ({setShowAddUserModal}: iSetModal) => {
                     <label>Senha:</label>
                     <input type="text" placeholder={errors.password?.message} {...register("password")}/>
                     <label>E-mail:</label>
-                    <input type="text" placeholder={errors.email?.message} {...register("email")}/>
-                    <input type="checkbox" {...register("is_superuser")}/>
-                    <label>Usuário admin</label>
+                    <input type="text" placeholder={errors.email?.message} className="emailInput" {...register("email")}/>
+                    <div className="superUserCheckbox">
+                        <label>Usuário admin</label>
+                        <input type="checkbox" {...register("is_superuser")}/>
+                    </div>
                     <button type="submit">Adicionar produto</button>
                 </form>
             </main>

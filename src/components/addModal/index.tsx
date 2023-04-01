@@ -1,4 +1,4 @@
-import { StyledAddModal } from "./styles"
+import { StyledAddProductModal } from "./styles"
 import { yupResolver } from "@hookform/resolvers/yup"
 import {useForm} from "react-hook-form"
 import * as yup from "yup"
@@ -41,11 +41,11 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
     }
 
     return (
-        <StyledAddModal>
+        <StyledAddProductModal>
             <main>
                 <button className="closeModal" onClick={() => setShowAddModal(false)}>X</button>
                 <div>
-                    <h2>Criar contato</h2>
+                    <h2>Criar produto</h2>
                 </div>
                 <form onSubmit={handleSubmit(createProduct)}>
                     <label>Nome:</label>
@@ -55,11 +55,11 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
                     <label>Quantidade:</label>
                     <input type="text" placeholder={errors.qty?.message} {...register("qty")}/>
                     <label>Imagem:</label>
-                    <input type="file" id="file" placeholder="Arraste uma imagem" accept=".png,.jpg,.jpeg" onChange={handleImageChange}/>
+                    <input type="file" id="file" placeholder="Arraste uma imagem" accept=".png,.jpg,.jpeg" className="inputFile" onChange={handleImageChange}/>
                     <button type="submit">Adicionar produto</button>
                 </form>
             </main>
-        </StyledAddModal>
+        </StyledAddProductModal>
     )
 }
 
