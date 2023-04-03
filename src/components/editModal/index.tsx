@@ -12,6 +12,9 @@ interface iSetModal {
 
 const EditModal = ({setShowEditModal}: iSetModal) => {
     const {editProduct, deleteProduct} = useContext(ProductsContext)
+    const {products} = useContext(ProductsContext)
+
+    const product = products?.find((prod) => prod.id === localStorage.getItem("@FOCUS_PRODUCT_ID"))
 
     const editProductFormSchema = yup.object().shape({
         name: yup.string().optional(),
@@ -51,15 +54,14 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
                 <button className="closeModal" onClick={() => {setShowEditModal(false), removeFocusProductId()}}>X</button>
                 <div>
                     <h2>Editar produto</h2>
-                    <p>Para não alteração, deixe o campo em branco.</p>
                 </div>
                 <form onSubmit={handleSubmit(handleEditObj)}>
                     <label>Nome:</label>
-                    <input type="text" placeholder={errors.name?.message} {...register("name")}/>
+                    <input type="text" placeholder={errors.name?.message} {...register("name")} defaultValue={product?.name}/>
                     <label>Valor de custo:</label>
-                    <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")}/>
+                    <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")} defaultValue={product?.entry_cost}/>
                     <label>Quantidade:</label>
-                    <input type="text" placeholder={errors.qty?.message} {...register("qty")}/>
+                    <input type="text" placeholder={errors.qty?.message} {...register("qty")} defaultValue={product?.qty}/>
                     <button type="submit">Salvar</button>
                 </form>
                 <button onClick={() => deleteProduct()} className="deleteBtn">Deletar produto</button>

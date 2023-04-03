@@ -1,8 +1,10 @@
 import api from "../services/api";
-import { createContext, useEffect } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
 import { ReactNode } from "react";
 import { toast } from "react-toastify"
+import { UserContext } from "./userContext";
+import { ModalsContext } from "./modalsContext";
 
 interface iProvider {
     children: ReactNode
@@ -48,6 +50,8 @@ export const ProductProvider = ({children}: iProvider) => {
     const [products, setProducts] = useState([] as iProduct[])
     const [filteredProducts, setFilteredProducts] = useState([] as iProduct[])
 
+    const {setShowEditModal, setShowAddModal} = useContext(ModalsContext)
+
     const populateProducts = async (): Promise<void> => {
         const token = localStorage.getItem("@TOKEN")
         try {
@@ -83,7 +87,7 @@ export const ProductProvider = ({children}: iProvider) => {
                     final_cost: request.data.final_cost
                 }
             ])
-            console.log(data)
+            setShowAddModal(false)
             toast.success("Produto criado!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
@@ -105,6 +109,7 @@ export const ProductProvider = ({children}: iProvider) => {
                     prod.qty = request.data.qty
                 }
             })
+            setShowEditModal(false)
             toast.success("Sucesso ao editar produto!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
@@ -121,6 +126,7 @@ export const ProductProvider = ({children}: iProvider) => {
             })
             const deletedObjArr = products.filter((prod) => prod.id !== product_id)
             setProducts(deletedObjArr)
+            setShowEditModal(false)
             toast.warn("Produto deletado!", {autoClose: 3000})
         } catch (error) {
             console.log(error)

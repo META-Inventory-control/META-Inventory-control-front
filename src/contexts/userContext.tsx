@@ -1,9 +1,10 @@
 import api from "../services/api";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { useState } from "react";
 import { ReactNode } from "react";
 import { decodeToken } from "react-jwt";
 import {toast} from "react-toastify"
+import { ModalsContext } from "./modalsContext";
 
 export interface iUserLogin {
     username: string,
@@ -46,6 +47,7 @@ export const UserContext = createContext<iUserContextRes>({} as iUserContextRes)
 
 export const UserProvider = ({children}: iProvider) => {
     const [user, setUser] = useState<iUser | null>(null)
+    const {setShowAddUserModal, setShowEditUserModal} = useContext(ModalsContext)
 
     const userLogin = async (data: iUserLogin): Promise<void> => {
         try {
@@ -85,6 +87,7 @@ export const UserProvider = ({children}: iProvider) => {
             const request = await api.post(`/users/create/`, data, {
                 headers: {Authorization: `Bearer ${token}`}
             })
+            setShowAddUserModal(false)
             toast.success("Usuário criado!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
@@ -98,6 +101,7 @@ export const UserProvider = ({children}: iProvider) => {
             const request = await api.patch(`/users/${user?.id}/`, data, {
                 headers: {Authorization: `Bearer ${token}`}
             })
+            setShowEditUserModal(false)
             toast.success("Sucesso ao editar usuário!", {autoClose: 3000})
         } catch (error) {
             console.log(error)
