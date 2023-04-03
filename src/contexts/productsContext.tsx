@@ -33,7 +33,7 @@ interface iProduct {
 interface iProductContextRes {
     products: iProduct[] | null,
     populateProducts: () => Promise<void>,
-    addProduct: (data: iProductAdd) => Promise<void>,
+    addProduct: (data: Omit<iProductAdd, "image">, file: File | undefined) => Promise<void>,
     editProduct: (data: iProductEdit) => Promise<void>,
     deleteProduct: () => Promise<void>,
     filteredProducts: iProduct[] | null,
@@ -60,11 +60,17 @@ export const ProductProvider = ({children}: iProvider) => {
         }
     }
 
-    const addProduct = async (data: iProductAdd): Promise<void> => {
+    const addProduct = async (data: Omit<iProductAdd, "image">, file: File | undefined): Promise<void> => {
         const token = localStorage.getItem("@TOKEN")
         try {
-            const request = await api.post("/products/", data, {
-                headers: {Authorization: `Bearer ${token}`}
+            const request = await api.post("/products/", {
+                ...data,
+                image: file
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "multipart/form-data"
+                }
             })
             setProducts([
                 ...products,

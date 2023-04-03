@@ -27,8 +27,7 @@ const AddUserModal = ({setShowAddUserModal}: iSetModal) => {
     } = useForm<iCreateUser>({resolver: yupResolver(addUserFormSchema)})
 
     const handleUserCreation = (data: iCreateUser) => {
-        //createUser(data)
-        console.log(data)
+        createUser(data)
     }
 
     return (

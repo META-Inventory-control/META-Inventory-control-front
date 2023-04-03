@@ -32,12 +32,12 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
         }
     }
 
-    const createProduct = (data: Omit<iProductAdd, "image">) => {
+
+    const createProduct = (data: any) => {
         const newObj = {
-            ...data,
-            image: file
+            ...data
         }
-        addProduct(newObj)
+        addProduct(newObj, file)
     }
 
     return (
