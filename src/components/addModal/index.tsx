@@ -12,6 +12,7 @@ interface iSetModal {
 
 const AddProductModal = ({setShowAddModal}: iSetModal) => {
     const [file, setFile] = useState<File>()
+    const [loading, setLoading] = useState(false)
     const {addProduct} = useContext(ProductsContext)
 
     const addProductsFormSchema = yup.object().shape({
@@ -56,7 +57,11 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
                     <input type="text" placeholder={errors.qty?.message} {...register("qty")}/>
                     <label>Imagem:</label>
                     <input type="file" id="file" placeholder="Arraste uma imagem" accept=".png,.jpg,.jpeg" className="inputFile" onChange={handleImageChange}/>
-                    <button type="submit">Adicionar produto</button>
+                    { loading ? (
+                        <button type="submit" className="loadingButton">Processando produto...</button>
+                    ) : (
+                        <button type="submit" onClick={() => setLoading(true)}>Adicionar produto</button>
+                    )}
                 </form>
             </main>
         </StyledAddProductModal>

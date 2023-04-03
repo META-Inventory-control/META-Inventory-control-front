@@ -87,6 +87,12 @@ export const StyledAddProductModal = styled.div`
                 cursor: pointer;
             }
 
+            .loadingButton {
+                background: rgba(18, 94, 166, 0.38);
+                color: white;
+                cursor: wait;
+            }
+
             button:hover {
                 background-color: var(--Color-brand-1);
                 transition: 600ms;
