@@ -10,6 +10,7 @@ import { Dashboard } from './pages/dashboard'
 import { ProductProvider } from './contexts/productsContext'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { GroupProvider } from './contexts/groupsContext'
 
 const router = createBrowserRouter([
   {
@@ -32,8 +33,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <ModalsProvider>
       <UserProvider>
         <ProductProvider>
-          <RouterProvider router={router}></RouterProvider>
-          <ToastContainer/>
+          <GroupProvider>
+            <RouterProvider router={router}></RouterProvider>
+            <ToastContainer/>
+          </GroupProvider>
         </ProductProvider>
       </UserProvider>
     </ModalsProvider>

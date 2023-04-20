@@ -15,10 +15,12 @@ import AddUserModal from "../components/createUserModal"
 import { SearchBar } from "../components/searchBar"
 import EditUserModal from "../components/editUserModal"
 import { decodeToken } from "react-jwt"
+import { GroupsContext } from "../contexts/groupsContext"
 
 const Dashboard = () => {
     const {populateProducts} = useContext(ProductsContext)
     const {user, populateUser} = useContext(UserContext)
+    const {populateGroups, groups} = useContext(GroupsContext)
 
     const {showAddModal, setShowAddModal, showEditModal, setShowEditModal,
     showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal} = useContext(ModalsContext)
@@ -33,6 +35,7 @@ const Dashboard = () => {
             if (decodedToken) {
                 populateUser(user_id)
                 populateProducts()
+                populateGroups()
             } else {
                 localStorage.clear()
                 navigate("/login")
@@ -49,7 +52,6 @@ const Dashboard = () => {
                 <SideBar></SideBar>
             </div>
             <div className="mainContainer">
-
                 { showAddUserModal ? (
                     <AddUserModal setShowAddUserModal={setShowAddUserModal}></AddUserModal>
                 ) : (

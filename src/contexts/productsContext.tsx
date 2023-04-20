@@ -29,7 +29,9 @@ interface iProduct {
 	name: string,
 	entry_cost: number,
 	qty: number,
-	image: string
+	image: string,
+    group: string,
+    code: string
 }
 
 interface iProductContextRes {
@@ -84,7 +86,9 @@ export const ProductProvider = ({children}: iProvider) => {
                     qty: request.data.qty,
                     image: request.data.image,
                     id: request.data.id,
-                    final_cost: request.data.final_cost
+                    final_cost: request.data.final_cost,
+                    group: request.data.group,
+                    code: request.data.code
                 }
             ])
             setShowAddModal(false)

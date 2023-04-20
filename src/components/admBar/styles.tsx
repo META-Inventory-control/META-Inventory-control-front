@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledAdmBarHeader = styled.header`
     background-color: var(--gray-1);
     width: 100%;
-    height: 100px;
+    height: 60px;
     padding: 0 80px;
     box-sizing: border-box;
     display: flex;

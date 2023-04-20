@@ -21,7 +21,7 @@ export const StyledDashboardMain = styled.main`
 
         .admContainer {
             background-color: blue;
-            height: 100px;
+            height: 60px;
         }
 
         .contentContainer {
