@@ -14,6 +14,7 @@ export interface iProductAdd {
     name: string,
 	entry_cost: number,
 	qty: number,
+    group: string,
     image: File | undefined
 }
 

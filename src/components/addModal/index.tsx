@@ -5,6 +5,7 @@ import * as yup from "yup"
 import { iProductAdd } from "../../contexts/productsContext"
 import { ChangeEvent, useContext, useState } from "react"
 import { ProductsContext } from "../../contexts/productsContext"
+import { GroupsContext } from "../../contexts/groupsContext"
 
 interface iSetModal {
     setShowAddModal: (value: boolean) => void
@@ -14,11 +15,13 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
     const [file, setFile] = useState<File>()
     const [loading, setLoading] = useState(false)
     const {addProduct} = useContext(ProductsContext)
+    const {groups} = useContext(GroupsContext)
 
     const addProductsFormSchema = yup.object().shape({
         name: yup.string().required("Nome obrigatório"),
         entry_cost: yup.number().required("Inserção de valor de custo obrigatório"),
         qty: yup.number().required("Inserção de quantidade obrigatória"),
+        group: yup.string().required("Inserção de grupo obrigatória")
     })
 
     const {
@@ -55,6 +58,15 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
                     <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")}/>
                     <label>Quantidade:</label>
                     <input type="text" placeholder={errors.qty?.message} {...register("qty")}/>
+                    <label>Grupo:</label>
+                    <select id="" {...register("group")}>
+                        <option value="" disabled selected>Selecione um grupo</option>
+                        { groups ? (
+                            groups.map((group) => <option key={group.id} value={group.id}>{group.group_name}</option>)
+                        ) : (
+                            <option disabled value="">Não há grupos</option>
+                        )}
+                    </select>
                     <label>Imagem:</label>
                     <input type="file" id="file" placeholder="Arraste uma imagem" accept=".png,.jpg,.jpeg" className="inputFile" onChange={handleImageChange}/>
                     { loading ? (

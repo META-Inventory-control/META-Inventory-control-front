@@ -53,5 +53,25 @@ export const StyledAdmBarHeader = styled.header`
         transition: 500ms;
     }
 
+    .addGroup {
+        background-color: var(--Color-brand-1);
+        width: 180px;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 8px;
+        border-radius: 10px;
+    }
+
+    .addGroup:hover {
+        transform: scale(1.05);
+        transition: 500ms;
+        cursor: pointer;
+    }
+
+    .addGroup:not(:hover) {
+        transition: 500ms;
+    }
     
 `

@@ -4,11 +4,13 @@ import { ProductsContext } from "../../contexts/productsContext"
 import { UserContext } from "../../contexts/userContext"
 import { useContext } from "react"
 import { ModalsContext } from "../../contexts/modalsContext"
+import { GroupsContext } from "../../contexts/groupsContext"
 
 export const ProductsList = () => {
     const {products, filteredProducts} = useContext(ProductsContext)
     const {user} = useContext(UserContext)
     const {setShowEditModal} = useContext(ModalsContext)
+    const {groups} = useContext(GroupsContext)
 
     const setFocusProductId = (productId: string) => {
         localStorage.setItem("@FOCUS_PRODUCT_ID", productId)
@@ -20,6 +22,12 @@ export const ProductsList = () => {
                 filteredProducts.map((product) => {
                     return (
                         <li className="productCard" key={product.id}>
+                            <div className="groupDiv">
+                                <span>{groups.find((group) => group.id === product.group)?.group_name}</span>
+                            </div>
+                            <div className="codeDiv">
+                                <span>{product.code}</span>
+                            </div>
                             <div className="imgDiv">
                                 {product.image ? (
                                     <img src={product.image} alt="" />
@@ -62,6 +70,12 @@ export const ProductsList = () => {
                 products?.map((product) => {
                     return (
                         <li className="productCard" key={product.id}>
+                            <div className="groupDiv">
+                                <span>{groups.find((group) => group.id === product.group)?.group_name}</span>
+                            </div>
+                            <div className="codeDiv">
+                                <span>{product.code}</span>
+                            </div>
                             <div className="imgDiv">
                                 {product.image ? (
                                     <img src={product.image} alt="" />

@@ -22,6 +22,37 @@ export const StyledProductsListUl = styled.ul`
         border-radius: 26px;
         margin-top: 26px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        position: relative;
+
+        .groupDiv {
+            position: absolute;
+            background-color: var(--light-black);
+            padding: 2px;
+            left: 8%;
+            border-radius: 0 0 5px 5px;
+
+            span {
+                color: white;
+                font-size: 12px;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .codeDiv {
+            position: absolute;
+            background-color: var(--Color-brand-2);
+            padding: 2px;
+            right: 8%;
+            border-radius: 0 0 5px 5px;
+
+            span {
+                color: white;
+                font-size: 12px;
+                display: flex;
+                justify-content: center;
+            }
+        }
 
         .imgDiv {
             width: 100%;
