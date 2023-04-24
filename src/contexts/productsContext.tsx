@@ -113,6 +113,7 @@ export const ProductProvider = ({children}: iProvider) => {
                     prod.name = request.data.name
                     prod.entry_cost = request.data.entry_cost
                     prod.qty = request.data.qty
+                    prod.group = request.data.group
                 }
             })
             setShowEditModal(false)

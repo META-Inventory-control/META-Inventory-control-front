@@ -44,8 +44,7 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
         if (editObj.qty) {
             editObj.qty = parseInt(editObj.qty)
         }
-        //editProduct(editObj)
-        console.log(editObj)
+        editProduct(editObj)
     }
 
     const removeFocusProductId = () => {
