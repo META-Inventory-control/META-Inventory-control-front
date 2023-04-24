@@ -4,7 +4,7 @@ import { ModalsContext } from "../../contexts/modalsContext"
 import { useContext } from "react"
 
 export const AdmBar = () => {
-    const {setShowAddModal, setShowAddUserModal} = useContext(ModalsContext)
+    const {setShowAddModal, setShowAddUserModal, setShowGroupModal} = useContext(ModalsContext)
 
     return (
         <StyledAdmBarHeader>
@@ -16,7 +16,7 @@ export const AdmBar = () => {
                 <AiOutlineUserAdd size={26} color={"white"}></AiOutlineUserAdd>
                 <span>Criar usuário</span>
             </div>
-            <div className="addGroup" onClick={() => console.log("Abrir modal de grupos")}>
+            <div className="addGroup" onClick={() => setShowGroupModal(true)}>
                 <AiOutlineGroup size={26} color={"white"}></AiOutlineGroup>
                 <span>Criar grupo</span>
             </div>

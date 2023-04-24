@@ -105,6 +105,7 @@ export const StyledAddProductModal = styled.div`
             }
         }
     }
+}
 
 
     @media (min-width: 600px) {

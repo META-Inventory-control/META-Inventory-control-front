@@ -25,7 +25,7 @@ export interface iProductEdit {
     group?: string
 }
 
-interface iProduct {
+export interface iProduct {
     id: string,
 	final_cost: number,
 	name: string,

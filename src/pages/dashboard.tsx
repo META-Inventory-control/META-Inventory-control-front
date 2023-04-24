@@ -16,6 +16,7 @@ import { SearchBar } from "../components/searchBar"
 import EditUserModal from "../components/editUserModal"
 import { decodeToken } from "react-jwt"
 import { GroupsContext } from "../contexts/groupsContext"
+import { GroupsModal } from "../components/groupsModal"
 
 const Dashboard = () => {
     const {populateProducts} = useContext(ProductsContext)
@@ -23,7 +24,7 @@ const Dashboard = () => {
     const {populateGroups, groups} = useContext(GroupsContext)
 
     const {showAddModal, setShowAddModal, showEditModal, setShowEditModal,
-    showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal} = useContext(ModalsContext)
+    showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showGroupModal, setShowGroupModal} = useContext(ModalsContext)
 
     const navigate = useNavigate()
 
@@ -72,6 +73,12 @@ const Dashboard = () => {
 
                 { showEditUserModal ? (
                     <EditUserModal setShowEditUserModal={setShowEditUserModal}></EditUserModal>
+                ) : (
+                    <></>
+                )}
+
+                { showGroupModal ? (
+                    <GroupsModal setShowGroupsModal={setShowGroupModal}></GroupsModal>
                 ) : (
                     <></>
                 )}
