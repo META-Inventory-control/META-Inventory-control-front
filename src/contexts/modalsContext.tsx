@@ -11,6 +11,8 @@ interface iModalsContext {
     setShowAddUserModal: (value: boolean) => void,
     showEditUserModal: boolean,
     setShowEditUserModal: (value: boolean) => void
+    showGroupModal: boolean
+    setShowGroupModal: (value: boolean) => void
 } 
 
 export const ModalsContext = createContext<iModalsContext>({} as iModalsContext)
@@ -20,10 +22,11 @@ export const ModalsProvider = ({children}:any) => {
     const [showAddModal, setShowAddModal] = useState(false)
     const [showAddUserModal, setShowAddUserModal] = useState(false)
     const [showEditUserModal, setShowEditUserModal] = useState(false)
+    const [showGroupModal, setShowGroupModal] = useState(false)
 
     return (
         <ModalsContext.Provider value={{
-            showEditModal, setShowEditModal, showAddModal, setShowAddModal, showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal
+            showGroupModal, setShowGroupModal,showEditModal, setShowEditModal, showAddModal, setShowAddModal, showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal
         }}>
             {children}
         </ModalsContext.Provider>

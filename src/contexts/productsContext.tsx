@@ -24,7 +24,7 @@ export interface iProductEdit {
 	qty?: number,
 }
 
-interface iProduct {
+export interface iProduct {
     id: string,
 	final_cost: number,
 	name: string,
