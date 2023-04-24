@@ -78,6 +78,7 @@ export const StyledSearchBar = styled.section`
             display: flex;
             align-items: center;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         li:hover {

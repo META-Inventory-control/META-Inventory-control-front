@@ -11,13 +11,10 @@ export const StyledAddProductModal = styled.div`
     display: flex;
     justify-content:center;
     align-items:center;
-
-    @media (min-width: 1000px) {
-        width: 80%;
-    }
+    
 
     main {
-        width: 86%;
+        width: 75%;
         background-color: #2E2A2A;
         border: 2px solid var(--Color-light);
         border-radius: 18px;
@@ -61,7 +58,7 @@ export const StyledAddProductModal = styled.div`
                 font-size: 16px;
             }
     
-            input {
+            input, select {
                 width: 100%;
                 padding: 8px 10px;
                 box-sizing: border-box;
@@ -106,12 +103,23 @@ export const StyledAddProductModal = styled.div`
                 width: 100%;
                 background: white;
             }
-        
+        }
     }
 
 
-    @media (min-width: 1000px) {
-        width: 30%;
+    @media (min-width: 600px) {
+        width: 100%;
 
+        main {
+            width: 60%;
+        }
+    }
+
+    @media (min-width: 1000px) {
+        width: 80%;
+
+        main {
+            width: 35%;
+        }
     }
 `

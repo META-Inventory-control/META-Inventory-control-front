@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { useContext } from "react"
 import { ProductsContext } from "../../contexts/productsContext"
 import { iProductEdit } from "../../contexts/productsContext"
+import { GroupsContext } from "../../contexts/groupsContext"
 
 interface iSetModal {
     setShowEditModal: (value: boolean) => void
@@ -13,13 +14,15 @@ interface iSetModal {
 const EditModal = ({setShowEditModal}: iSetModal) => {
     const {editProduct, deleteProduct} = useContext(ProductsContext)
     const {products} = useContext(ProductsContext)
+    const {groups} = useContext(GroupsContext)
 
     const product = products?.find((prod) => prod.id === localStorage.getItem("@FOCUS_PRODUCT_ID"))
 
     const editProductFormSchema = yup.object().shape({
         name: yup.string().optional(),
         entry_cost: yup.string().optional(),
-        qty: yup.string().optional()
+        qty: yup.string().optional(),
+        group: yup.string().optional()
     })
 
     const {
@@ -41,7 +44,8 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
         if (editObj.qty) {
             editObj.qty = parseInt(editObj.qty)
         }
-        editProduct(editObj)
+        //editProduct(editObj)
+        console.log(editObj)
     }
 
     const removeFocusProductId = () => {
@@ -62,6 +66,15 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
                     <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")} defaultValue={product?.entry_cost}/>
                     <label>Quantidade:</label>
                     <input type="text" placeholder={errors.qty?.message} {...register("qty")} defaultValue={product?.qty}/>
+                    <label>Grupo:</label>
+                    <select id="" {...register("group")}>
+                        <option value="" disabled selected>Manter mesmo grupo</option>
+                        { groups ? (
+                            groups.map((group) => <option key={group.id} value={group.id}>{group.group_name}</option>)
+                        ) : (
+                            <option disabled value="">Não há grupos</option>
+                        )}
+                    </select>
                     <button type="submit">Salvar</button>
                 </form>
                 <button onClick={() => deleteProduct()} className="deleteBtn">Deletar produto</button>

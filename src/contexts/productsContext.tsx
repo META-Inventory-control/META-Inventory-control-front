@@ -22,6 +22,7 @@ export interface iProductEdit {
     name?: string,
 	entry_cost?: number,
 	qty?: number,
+    group?: string
 }
 
 interface iProduct {
