@@ -37,11 +37,14 @@ export const GroupsModal = ({setShowGroupsModal}: iGroupsPros) =>{
     }
 
     const deleteGroupFunc = (itemId:any) => {
-        deleteGroups(itemId)
-        setCurrentGroup([])
-        setCurrentGroupName("")
-        setCurrentId("")
-        setActivateForm(false)
+        if(currentGroup.length <= 0){
+            deleteGroups(itemId)
+            setCurrentGroup([])
+            setCurrentGroupName("")
+            setCurrentId("")
+            setActivateForm(false)
+            console.log(currentGroup)
+        }
     }
 
     const patchGroupFunc = (formData:any) => {
