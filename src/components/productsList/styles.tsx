@@ -83,6 +83,11 @@ export const StyledProductsListUl = styled.ul`
             justify-content: space-between;
         }
 
+        .interactionContainer {
+            display: flex;
+            width: 80px;
+        }
+
         .contentDiv div {
             display: flex;
             justify-content: space-between;

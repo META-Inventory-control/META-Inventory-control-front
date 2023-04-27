@@ -1,4 +1,5 @@
 import { BsThreeDotsVertical } from "react-icons/bs"
+import {TbRotateRectangle} from "react-icons/tb"
 import { StyledProductsListUl } from "./styles"
 import { ProductsContext } from "../../contexts/productsContext"
 import { UserContext } from "../../contexts/userContext"
@@ -9,7 +10,7 @@ import { GroupsContext } from "../../contexts/groupsContext"
 export const ProductsList = () => {
     const {products, filteredProducts} = useContext(ProductsContext)
     const {user} = useContext(UserContext)
-    const {setShowEditModal} = useContext(ModalsContext)
+    const {setShowEditModal, setShowTakeOutPrModal} = useContext(ModalsContext)
     const {groups} = useContext(GroupsContext)
 
     const setFocusProductId = (productId: string) => {
@@ -37,9 +38,15 @@ export const ProductsList = () => {
                             </div>
                             <div className="contentDiv">
                                 <div>
+                                    <button>Ola</button>
                                     <h2>{product.name}</h2>
                                     { user?.is_superuser ? (
                                         <BsThreeDotsVertical size={30} color={"black"} onClick={() => {setShowEditModal(true), setFocusProductId(product.id)}}></BsThreeDotsVertical>  
+                                    ) : (
+                                        <></>
+                                    )}
+                                    { user?.is_superuser ? (
+                                        <TbRotateRectangle size={30} color={"black"} onClick={() => {setShowTakeOutPrModal(true), setFocusProductId(product.id)}}></TbRotateRectangle>  
                                     ) : (
                                         <></>
                                     )}
@@ -86,11 +93,18 @@ export const ProductsList = () => {
                             <div className="contentDiv">
                                 <div>
                                     <h2>{product.name}</h2>
-                                    { user?.is_superuser ? (
-                                        <BsThreeDotsVertical size={30} color={"black"} onClick={() => {setShowEditModal(true), setFocusProductId(product.id)}}></BsThreeDotsVertical>  
-                                    ) : (
-                                        <></>
-                                    )}
+                                    <div className="interactionContainer">
+                                        { user?.is_superuser ? (
+                                            <BsThreeDotsVertical size={30} color={"black"} onClick={() => {setShowEditModal(true), setFocusProductId(product.id)}}></BsThreeDotsVertical>  
+                                        ) : (
+                                            <></>
+                                        )}
+                                        { user?.is_superuser ? (
+                                            <TbRotateRectangle size={30} color={"black"} onClick={() => {setShowTakeOutPrModal(true), setFocusProductId(product.id)}}></TbRotateRectangle>  
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </div>
                                 </div>
                                 <div>
                                     { user?.is_superuser ? (
