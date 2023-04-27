@@ -46,7 +46,7 @@ export const SideBar = () => {
                         </div>
                         <div className="addGroup option" onClick={() => setShowGroupModal(true)}>
                             <AiOutlineGroup size={26} color={"white"}></AiOutlineGroup>
-                            <span>Criar grupo</span>
+                            <span>Gerenciar grupo</span>
                         </div>
                         
                     </>
