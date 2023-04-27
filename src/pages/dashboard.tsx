@@ -6,7 +6,6 @@ import { ProductsContext } from "../contexts/productsContext"
 import { UserContext } from "../contexts/userContext"
 import { useNavigate } from "react-router-dom"
 import { SideBar } from "../components/sideBar"
-import { AdmBar } from "../components/admBar"
 import { ProductsList } from "../components/productsList"
 import { ModalsContext } from "../contexts/modalsContext"
 import AddProductModal from "../components/addModal"
@@ -17,13 +16,14 @@ import EditUserModal from "../components/editUserModal"
 import { decodeToken } from "react-jwt"
 import { GroupsContext } from "../contexts/groupsContext"
 import { GroupsModal } from "../components/groupsModal"
+import { UserModal } from "../components/userModal"
 
 const Dashboard = () => {
     const {populateProducts} = useContext(ProductsContext)
     const {user, populateUser} = useContext(UserContext)
     const {populateGroups, groups} = useContext(GroupsContext)
 
-    const {showAddModal, setShowAddModal, showEditModal, setShowEditModal,
+    const {showUserModal, setShowUserModal,showAddModal, setShowAddModal, showEditModal, setShowEditModal,
     showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showGroupModal, setShowGroupModal} = useContext(ModalsContext)
 
     const navigate = useNavigate()
@@ -83,12 +83,12 @@ const Dashboard = () => {
                     <></>
                 )}
 
-
-                { user?.is_superuser ? (
-                    <div className="admContainer"><AdmBar></AdmBar></div>
+                { showUserModal ? (
+                    <UserModal setShowUserModal={setShowUserModal}></UserModal>
                 ) : (
                     <></>
                 )}
+
                 <div className="contentContainer">
                     <SearchBar></SearchBar>
                     <ProductsList></ProductsList>

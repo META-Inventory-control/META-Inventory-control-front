@@ -1,5 +1,5 @@
 import api from "../services/api";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useId } from "react";
 import { useState } from "react";
 import { ReactNode } from "react";
 import { decodeToken } from "react-jwt";
@@ -37,16 +37,20 @@ interface iProvider {
 
 interface iUserContextRes {
     user: iUser | null,
+    userList: iUser[] | null,
     userLogin: (data: iUserLogin) => Promise<void>,
     createUser: (data: iCreateUser) => Promise<void>,
     editUser: (data: iUserEdit) => Promise<void>,
-    populateUser: (user_id: string) => Promise<void>
+    populateUser: (user_id: string) => Promise<void>,
+    listAllUsers: () => Promise<void>,
+    deleteUser: (userId: string) => Promise<void>
 }
 
 export const UserContext = createContext<iUserContextRes>({} as iUserContextRes)
 
 export const UserProvider = ({children}: iProvider) => {
     const [user, setUser] = useState<iUser | null>(null)
+    const [userList, setUserList] = useState<iUser[] | null>(null)
     const {setShowAddUserModal, setShowEditUserModal} = useContext(ModalsContext)
 
     const userLogin = async (data: iUserLogin): Promise<void> => {
@@ -109,8 +113,33 @@ export const UserProvider = ({children}: iProvider) => {
         }
     }
 
+    const deleteUser = async (userId:string): Promise<void> => {
+        const token = localStorage.getItem("@TOKEN")
+        try {
+            const request = await api.delete(`/users/${userId}/`, {
+                headers: {Authorization: `Bearer ${token}`}
+            })
+            toast.success("Usuario deletado com sucesso", {autoClose:2500})
+            listAllUsers()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const listAllUsers = async (): Promise<void> => {
+        const token = localStorage.getItem("@TOKEN")
+        try {
+            const request = await api.get(`/users/list/`, {
+                headers: {Authorization: `Bearer ${token}`}
+            })
+            setUserList(request.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return(
-        <UserContext.Provider value={{user, userLogin, createUser, editUser, populateUser}}>
+        <UserContext.Provider value={{deleteUser, userList,listAllUsers, user, userLogin, createUser, editUser, populateUser}}>
             {children}
         </UserContext.Provider>
     )
