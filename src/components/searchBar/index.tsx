@@ -25,6 +25,10 @@ export const SearchBar = () => {
     const handleGroupsFilteredProducts = (value: string) => {
         const newFilter = products?.filter((prod) => prod.group === value)
         setFilteredProducts(newFilter!)
+
+        if(!newFilter?.length){
+            setFilteredProducts(null)
+        }
     }
 
     const resetSearch = () => {
