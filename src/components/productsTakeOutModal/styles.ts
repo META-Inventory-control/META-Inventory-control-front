@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledUserModal = styled.div`
+export const StyledTakeOutProductModal = styled.div`
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -11,95 +11,25 @@ export const StyledUserModal = styled.div`
     display: flex;
     justify-content:center;
     align-items:center;
-
-    .divContainer{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-
-        background-color: var(--light-black);
-        width:35vw;
-        height:40vh;
-        border-radius:5px;
-        border: 2px solid var(--Color-brand-1);
-        padding: 10px;
-    }
-
-    ul{
-        margin:10px;
-        max-height: 80%;
-        overflow-y:auto;
-
-        ::-webkit-scrollbar {
-        width: 3px;
-        }
-        ::-webkit-scrollbar-track {
-        background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-        background: var(--Color-brand-1);
-        }
-        ::-webkit-scrollbar-thumb:hover {
-        background: white;
-        }
-    }
-
-    .buttonDelete{
-        background-color:transparent;
-        cursor:pointer;
-    }
-
-    li{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-direction:row;
-
-        background-color: black;
-        border-radius: 3px;
-
-        margin:10px;
-        padding:5px;
-        border:2px solid var(--Color-brand-1);
-    }
-
-    h1{
-        text-align:center;
-        padding:1rem;
-        padding-top:0px;
-
-        font-size:22px;
-    }
-
-    .closeModal {
-            
-            left: 10px;
-            top: 10px;
-            border: 1px solid lightblue;
-            border-radius: 50%;
-            color: white;
-            background-color: transparent;
-            cursor: pointer;
-            width:30px;
-            height:30px;
-        }
-
-    @media (min-width: 1000px) {
-        width: 80%;
-    }
+    
 
     main {
-        width: 76%;
-        height: 550px;
+        width: 75%;
         background-color: #2E2A2A;
         border: 2px solid var(--Color-light);
         border-radius: 18px;
         position: relative;
 
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
+        .closeModal {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            border: 1px solid lightblue;
+            border-radius: 50%;
+            color: white;
+            background-color: transparent;
+            cursor: pointer;
+        }
 
         div {
             display: flex;
@@ -123,12 +53,12 @@ export const StyledUserModal = styled.div`
 
         form {
             padding: 24px 18px;
-    
+
             label {
                 font-size: 16px;
             }
     
-            input {
+            input, select {
                 width: 100%;
                 padding: 8px 10px;
                 box-sizing: border-box;
@@ -141,6 +71,12 @@ export const StyledUserModal = styled.div`
                     color: red;
                     opacity: 0.75;
                 }
+            }
+
+            span {
+                color: red;
+                display: block;
+                top: 0;
             }
     
             button {
@@ -173,13 +109,24 @@ export const StyledUserModal = styled.div`
                 width: 100%;
                 background: white;
             }
-        
+        }
     }
-}
 
 
-    /* @media (min-width: 1000px) {
-        width: 30%;
 
-    } */
+    @media (min-width: 600px) {
+        width: 100%;
+
+        main {
+            width: 60%;
+        }
+    }
+
+    @media (min-width: 1000px) {
+        width: 80%;
+
+        main {
+            width: 35%;
+        }
+    }
 `

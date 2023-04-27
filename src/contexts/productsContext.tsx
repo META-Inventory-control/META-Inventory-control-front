@@ -54,7 +54,7 @@ export const ProductProvider = ({children}: iProvider) => {
     const [products, setProducts] = useState([] as iProduct[])
     const [filteredProducts, setFilteredProducts] = useState<iProduct[] | null>([])
 
-    const {setShowEditModal, setShowAddModal} = useContext(ModalsContext)
+    const {setShowEditModal, setShowAddModal, setShowTakeOutPrModal} = useContext(ModalsContext)
 
     const populateProducts = async (): Promise<void> => {
         const token = localStorage.getItem("@TOKEN")
@@ -117,6 +117,7 @@ export const ProductProvider = ({children}: iProvider) => {
                 }
             })
             setShowEditModal(false)
+            setShowTakeOutPrModal(false)
             toast.success("Sucesso ao editar produto!", {autoClose: 3000})
         } catch (error) {
             console.log(error)

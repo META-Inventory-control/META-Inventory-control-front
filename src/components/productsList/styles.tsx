@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const StyledProductsListUl = styled.ul`
+    padding-bottom: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     overflow-y: scroll;
     max-height: 754px;
 
@@ -89,6 +90,11 @@ export const StyledProductsListUl = styled.ul`
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        .interactionContainer {
+            display: flex;
+            width: 80px;
         }
 
         .contentDiv div {

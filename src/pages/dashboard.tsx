@@ -17,6 +17,7 @@ import { decodeToken } from "react-jwt"
 import { GroupsContext } from "../contexts/groupsContext"
 import { GroupsModal } from "../components/groupsModal"
 import { UserModal } from "../components/userModal"
+import TakeOutProductsModal from "../components/productsTakeOutModal"
 
 const Dashboard = () => {
     const {populateProducts} = useContext(ProductsContext)
@@ -24,7 +25,8 @@ const Dashboard = () => {
     const {populateGroups, groups} = useContext(GroupsContext)
 
     const {showUserModal, setShowUserModal,showAddModal, setShowAddModal, showEditModal, setShowEditModal,
-    showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showGroupModal, setShowGroupModal} = useContext(ModalsContext)
+    showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showGroupModal, setShowGroupModal,
+    showTakeOutPrModal, setShowTakeOutPrModal} = useContext(ModalsContext)
 
     const navigate = useNavigate()
 
@@ -88,6 +90,13 @@ const Dashboard = () => {
                 ) : (
                     <></>
                 )}
+
+                { showTakeOutPrModal ? (
+                    <TakeOutProductsModal setShowTakeOutPrModal={setShowTakeOutPrModal}></TakeOutProductsModal>
+                ) : (
+                    <></>
+                )}
+                
 
                 <div className="contentContainer">
                     <SearchBar></SearchBar>

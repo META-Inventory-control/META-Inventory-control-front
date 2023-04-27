@@ -53,7 +53,7 @@ export const StyledAddProductModal = styled.div`
 
         form {
             padding: 24px 18px;
-    
+
             label {
                 font-size: 16px;
             }
@@ -71,6 +71,12 @@ export const StyledAddProductModal = styled.div`
                     color: red;
                     opacity: 0.75;
                 }
+            }
+
+            span {
+                color: red;
+                display: block;
+                top: 0;
             }
     
             button {
@@ -105,7 +111,7 @@ export const StyledAddProductModal = styled.div`
             }
         }
     }
-}
+
 
 
     @media (min-width: 600px) {

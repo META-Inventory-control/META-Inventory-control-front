@@ -25,7 +25,7 @@ export const StyledDashboardMain = styled.main`
         }
 
         .contentContainer {
-            padding: 30px 80px;
+            padding: 26px 80px 0px 80px;
         }
     }
 `

@@ -18,7 +18,7 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
     const {groups} = useContext(GroupsContext)
 
     const addProductsFormSchema = yup.object().shape({
-        name: yup.string().required("Nome obrigatório"),
+        name: yup.string().max(30, "Nome maior que 30 caracteres.").required("Nome obrigatório"),
         entry_cost: yup.number().required("Inserção de valor de custo obrigatório"),
         qty: yup.number().required("Inserção de quantidade obrigatória"),
         group: yup.string().required("Inserção de grupo obrigatória")
@@ -52,9 +52,10 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
                     <h2>Criar produto</h2>
                 </div>
                 <form onSubmit={handleSubmit(createProduct)}>
-                    <label>Nome:</label>
+                    
+                    {errors.name ? (<span>{errors.name.message}</span>) : (<label>Nome</label>)}
                     <input type="text" placeholder={errors.name?.message} {...register("name")}/>
-                    <label>Preço de custo:</label>
+                    <label>Valor de custo:</label>
                     <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")}/>
                     <label>Quantidade:</label>
                     <input type="text" placeholder={errors.qty?.message} {...register("qty")}/>
