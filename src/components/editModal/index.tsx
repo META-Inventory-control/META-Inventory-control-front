@@ -21,6 +21,7 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
     const editProductFormSchema = yup.object().shape({
         name: yup.string().optional(),
         entry_cost: yup.string().optional(),
+        final_cost: yup.string().optional(),
         qty: yup.string().optional(),
         group: yup.string().optional()
     })
@@ -63,6 +64,8 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
                     <input type="text" placeholder={errors.name?.message} {...register("name")} defaultValue={product?.name}/>
                     <label>Valor de custo:</label>
                     <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")} defaultValue={product?.entry_cost}/>
+                    <label>Valor final:</label>
+                    <input type="text" placeholder={errors.final_cost?.message} {...register("final_cost")} defaultValue={product?.final_cost}/>
                     <label>Quantidade:</label>
                     <input type="text" placeholder={errors.qty?.message} {...register("qty")} defaultValue={product?.qty}/>
                     <label>Grupo:</label>

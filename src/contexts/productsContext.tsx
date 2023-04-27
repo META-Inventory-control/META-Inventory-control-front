@@ -21,6 +21,7 @@ export interface iProductAdd {
 export interface iProductEdit {
     name?: string,
 	entry_cost?: number,
+    final_cost?:number,
 	qty?: number,
     group?: string
 }
@@ -112,6 +113,7 @@ export const ProductProvider = ({children}: iProvider) => {
                 if (prod.id === product_id) {
                     prod.name = request.data.name
                     prod.entry_cost = request.data.entry_cost
+                    prod.final_cost = request.data.final_cost
                     prod.qty = request.data.qty
                     prod.group = request.data.group
                 }
