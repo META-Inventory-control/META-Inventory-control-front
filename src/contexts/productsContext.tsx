@@ -43,7 +43,7 @@ interface iProductContextRes {
     editProduct: (data: iProductEdit) => Promise<void>,
     deleteProduct: () => Promise<void>,
     filteredProducts: iProduct[] | null,
-    setFilteredProducts: (value: iProduct[]) => void
+    setFilteredProducts: (value: iProduct[] | null ) => void,
 }
 
 
@@ -52,7 +52,7 @@ export const ProductsContext = createContext<iProductContextRes>({} as iProductC
 
 export const ProductProvider = ({children}: iProvider) => {
     const [products, setProducts] = useState([] as iProduct[])
-    const [filteredProducts, setFilteredProducts] = useState([] as iProduct[])
+    const [filteredProducts, setFilteredProducts] = useState<iProduct[] | null>([])
 
     const {setShowEditModal, setShowAddModal} = useContext(ModalsContext)
 
@@ -142,7 +142,7 @@ export const ProductProvider = ({children}: iProvider) => {
     }
 
     return(
-        <ProductsContext.Provider value={{products, populateProducts, addProduct, editProduct, deleteProduct, filteredProducts, setFilteredProducts}}>
+        <ProductsContext.Provider value={{ products, populateProducts, addProduct, editProduct, deleteProduct, filteredProducts, setFilteredProducts}}>
             {children}
         </ProductsContext.Provider>
     )

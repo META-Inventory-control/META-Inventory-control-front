@@ -11,6 +11,15 @@ export const StyledProductsListUl = styled.ul`
     ::-webkit-scrollbar {
         width: 1px;
     }
+
+    .filteredNull{
+        width:100%;
+        text-align:center;
+        margin-top:5rem;
+        color:black;
+        font-size:32px;
+        font-weight:bold;
+    }
     
     span, h2 {
         color: black;
