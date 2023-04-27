@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const StyledProductsListUl = styled.ul`
+    padding-bottom: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     overflow-y: scroll;
     max-height: 754px;
 

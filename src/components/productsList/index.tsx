@@ -26,7 +26,7 @@ export const ProductsList = () => {
                                 <span>{groups.find((group) => group.id === product.group)?.group_name}</span>
                             </div>
                             <div className="codeDiv">
-                                <span>{product.code}</span>
+                                <span>MT{product.code}</span>
                             </div>
                             <div className="imgDiv">
                                 {product.image ? (
@@ -74,7 +74,7 @@ export const ProductsList = () => {
                                 <span>{groups.find((group) => group.id === product.group)?.group_name}</span>
                             </div>
                             <div className="codeDiv">
-                                <span>{product.code}</span>
+                                <span>MT{product.code}</span>
                             </div>
                             <div className="imgDiv">
                                 {product.image ? (
