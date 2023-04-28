@@ -11,6 +11,7 @@ import { ProductProvider } from './contexts/productsContext'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { GroupProvider } from './contexts/groupsContext'
+import { HistoricProvider } from './contexts/historicContext'
 
 const router = createBrowserRouter([
   {
@@ -34,8 +35,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <UserProvider>
         <ProductProvider>
           <GroupProvider>
-            <RouterProvider router={router}></RouterProvider>
-            <ToastContainer/>
+            <HistoricProvider>
+              <RouterProvider router={router}></RouterProvider>
+              <ToastContainer/>
+            </HistoricProvider>
           </GroupProvider>
         </ProductProvider>
       </UserProvider>
