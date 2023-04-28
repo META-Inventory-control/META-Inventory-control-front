@@ -63,7 +63,12 @@ export const ProductProvider = ({children}: iProvider) => {
             const request = await api.get("/products/", {
                 headers: {Authorization: `Bearer ${token}`}
             })
-            setProducts(request.data)
+            const array = request.data
+            const novoArray = array.map((obj: { code: string; }) => {
+                const novoObj = Object.assign({}, obj, { ["code"]: "MT" + obj.code });
+                return novoObj;
+              });
+            setProducts(novoArray)
         } catch (error) {
             console.log(error)
         }

@@ -17,7 +17,6 @@ export const ProductsList = () => {
         localStorage.setItem("@FOCUS_PRODUCT_ID", productId)
     }
 
-    console.log(filteredProducts)
 
     return (
         <StyledProductsListUl>
@@ -29,7 +28,7 @@ export const ProductsList = () => {
                                 <span>{groups.find((group) => group.id === product.group)?.group_name}</span>
                             </div>
                             <div className="codeDiv">
-                                <span>MT{product.code}</span>
+                                <span>{product.code}</span>
                             </div>
                             <div className="imgDiv">
                                 {product.image ? (
@@ -98,7 +97,7 @@ export const ProductsList = () => {
                                     <span>{groups.find((group) => group.id === product.group)?.group_name}</span>
                                 </div>
                                 <div className="codeDiv">
-                                    <span>MT{product.code}</span>
+                                    <span>{product.code}</span>
                                 </div>
                                 <div className="imgDiv">
                                     {product.image ? (
