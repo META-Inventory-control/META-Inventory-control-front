@@ -4,19 +4,21 @@ import { useState } from "react";
 
 interface iModalsContext {
     showEditModal: boolean,
-    setShowEditModal: (value: boolean) => void,
+    setShowEditModal: (value: boolean) => void
     showAddModal: boolean,
-    setShowAddModal: (value: boolean) => void,
+    setShowAddModal: (value: boolean) => void
     showAddUserModal: boolean,
-    setShowAddUserModal: (value: boolean) => void,
+    setShowAddUserModal: (value: boolean) => void
     showEditUserModal: boolean,
     setShowEditUserModal: (value: boolean) => void
     showGroupModal: boolean
     setShowGroupModal: (value: boolean) => void
     showUserModal: boolean
-    setShowUserModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setShowUserModal: React.Dispatch<React.SetStateAction<boolean>>
     showTakeOutPrModal: boolean,
     setShowTakeOutPrModal: (value: boolean) => void
+    showHistoricModal: boolean
+    setShowHistoricModal: (value: boolean) => void
 } 
 
 export const ModalsContext = createContext<iModalsContext>({} as iModalsContext)
@@ -28,12 +30,14 @@ export const ModalsProvider = ({children}:any) => {
     const [showEditUserModal, setShowEditUserModal] = useState(false)
     const [showGroupModal, setShowGroupModal] = useState(false)
     const [showUserModal, setShowUserModal] = useState(false)
-    const [showTakeOutPrModal, setShowTakeOutPrModal] = useState(false) 
+    const [showTakeOutPrModal, setShowTakeOutPrModal] = useState(false)
+    const [showHistoricModal, setShowHistoricModal] = useState(false) 
 
     return (
         <ModalsContext.Provider value={{
             showUserModal, setShowUserModal, showGroupModal, setShowGroupModal,showEditModal, setShowEditModal, showAddModal, setShowAddModal,
-            showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showTakeOutPrModal, setShowTakeOutPrModal
+            showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showTakeOutPrModal, setShowTakeOutPrModal,
+            showHistoricModal, setShowHistoricModal
         }}>
             {children}
         </ModalsContext.Provider>
