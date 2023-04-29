@@ -1,5 +1,5 @@
 import { StyledSideBarSection } from "./styles"
-import {BsBoxSeam} from "react-icons/bs"
+import {BsClockHistory} from "react-icons/bs"
 import {CgProfile} from "react-icons/cg"
 import {BiLogOut} from "react-icons/bi"
 import { ModalsContext } from "../../contexts/modalsContext"
@@ -12,8 +12,8 @@ import { FiUsers } from "react-icons/fi"
 export const SideBar = () => {
     const {setShowEditUserModal} = useContext(ModalsContext)
     const { user } = useContext(UserContext)
-    const {setShowAddModal, setShowAddUserModal, setShowGroupModal} = useContext(ModalsContext)
-    const {showUserModal, setShowUserModal} = useContext(ModalsContext)
+    const {setShowAddModal, setShowAddUserModal, setShowGroupModal, setShowUserModal,
+            setShowHistoricModal} = useContext(ModalsContext)
     const navigate = useNavigate()
 
     const handleLogout = () => {
@@ -48,7 +48,10 @@ export const SideBar = () => {
                             <AiOutlineGroup size={26} color={"white"}></AiOutlineGroup>
                             <span>Gerenciar grupo</span>
                         </div>
-                        
+                        <div className="historic option" onClick={() => setShowHistoricModal(true)}>
+                            <BsClockHistory size={26} color={"white"}></BsClockHistory>
+                            <span>Histórico de baixas</span>
+                        </div>
                     </>
                 ) : (
                     <></>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledDashboardMain = styled.main`
+export const StyledApplicationMain = styled.main`
 
     min-height: 100vh;
     margin: 0;

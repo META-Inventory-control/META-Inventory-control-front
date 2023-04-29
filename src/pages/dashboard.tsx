@@ -1,5 +1,5 @@
 
-import { StyledDashboardMain } from "./styles/dashboard-style"
+import { StyledApplicationMain } from "./styles/dashboard-style"
 import { useEffect } from "react"
 import { useContext } from "react"
 import { ProductsContext } from "../contexts/productsContext"
@@ -18,6 +18,7 @@ import { GroupsContext } from "../contexts/groupsContext"
 import { GroupsModal } from "../components/groupsModal"
 import { UserModal } from "../components/userModal"
 import TakeOutProductsModal from "../components/productsTakeOutModal"
+import HistoricModal from "../components/historicModal"
 
 const Dashboard = () => {
     const {populateProducts} = useContext(ProductsContext)
@@ -26,7 +27,7 @@ const Dashboard = () => {
 
     const {showUserModal, setShowUserModal,showAddModal, setShowAddModal, showEditModal, setShowEditModal,
     showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showGroupModal, setShowGroupModal,
-    showTakeOutPrModal, setShowTakeOutPrModal} = useContext(ModalsContext)
+    showTakeOutPrModal, setShowTakeOutPrModal, showHistoricModal, setShowHistoricModal} = useContext(ModalsContext)
 
     const navigate = useNavigate()
 
@@ -50,7 +51,7 @@ const Dashboard = () => {
     }, [])
 
     return (
-        <StyledDashboardMain>
+        <StyledApplicationMain>
             <div className="sideBarContainer">
                 <SideBar></SideBar>
             </div>
@@ -96,6 +97,12 @@ const Dashboard = () => {
                 ) : (
                     <></>
                 )}
+
+                { showHistoricModal ? (
+                    <HistoricModal setShowHistoricModal={setShowHistoricModal}></HistoricModal>
+                ) : (
+                    <></>
+                )}
                 
 
                 <div className="contentContainer">
@@ -103,7 +110,7 @@ const Dashboard = () => {
                     <ProductsList></ProductsList>
                 </div>
             </div>
-        </StyledDashboardMain>
+        </StyledApplicationMain>
     )
 }
 
