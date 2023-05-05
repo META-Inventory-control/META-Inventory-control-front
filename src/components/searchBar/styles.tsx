@@ -37,10 +37,10 @@ export const StyledSearchBar = styled.section`
         padding-bottom: 4px;
 
         ul {
-            width: 90%;
+            min-width: 30%;
+            max-width: 90;
             padding: 0 50px 5px 50px;
             display: flex;
-            justify-content: center;
             gap: 14px;
             overflow-x: scroll;
 

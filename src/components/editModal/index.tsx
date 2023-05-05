@@ -2,7 +2,7 @@ import { StyledEditModal } from "./styles"
 import * as yup from "yup"
 import {useForm} from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { ProductsContext } from "../../contexts/productsContext"
 import { iProductEdit } from "../../contexts/productsContext"
 import { GroupsContext } from "../../contexts/groupsContext"
@@ -15,6 +15,8 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
     const {editProduct, deleteProduct} = useContext(ProductsContext)
     const {products} = useContext(ProductsContext)
     const {groups} = useContext(GroupsContext)
+
+    const [editFinalValue, setEditFinalValue] = useState(false)
 
     const product = products?.find((prod) => prod.id === localStorage.getItem("@FOCUS_PRODUCT_ID"))
 
@@ -64,8 +66,10 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
                     <input type="text" placeholder={errors.name?.message} {...register("name")} defaultValue={product?.name}/>
                     <label>Valor de custo:</label>
                     <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")} defaultValue={product?.entry_cost}/>
-                    <label>Valor final:</label>
-                    <input type="text" placeholder={errors.final_cost?.message} {...register("final_cost")} defaultValue={product?.final_cost}/>
+                    <label className="enableFinalCostEdition">Editar valor final:
+                        <input type="checkbox" onChange={(e) => setEditFinalValue(e.target.checked)}/>
+                    </label>
+                    <input type="text" placeholder={errors.final_cost?.message} {...register("final_cost")} defaultValue={product?.final_cost} disabled={!editFinalValue}/>
                     <label>Quantidade:</label>
                     <input type="text" placeholder={errors.qty?.message} {...register("qty")} defaultValue={product?.qty}/>
                     <label>Grupo:</label>

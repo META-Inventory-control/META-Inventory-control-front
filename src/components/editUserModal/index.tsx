@@ -11,7 +11,7 @@ interface iSetModal {
 }
 
 const EditUserModal = ({setShowEditUserModal}: iSetModal) => {
-    const {editUser} = useContext(UserContext)
+    const {user, editUser} = useContext(UserContext)
 
     const editUserFormSchema = yup.object().shape({
         username: yup.string().optional(),
@@ -45,11 +45,11 @@ const EditUserModal = ({setShowEditUserModal}: iSetModal) => {
                 </div>
                 <form onSubmit={handleSubmit(handleEditObj)}>
                     <label>Username:</label>
-                    <input type="text" placeholder={errors.username?.message} {...register("username")}/>
+                    <input type="text" placeholder={errors.username?.message} {...register("username")} defaultValue={user?.username}/>
                     <label>Senha:</label>
-                    <input type="text" placeholder={errors.password?.message} {...register("password")}/>
+                    <input type="text" placeholder={errors.password?.message} {...register("password")} />
                     <label>E-mail:</label>
-                    <input type="text" placeholder={errors.email?.message} {...register("email")}/>
+                    <input type="text" placeholder={errors.email?.message} {...register("email")} defaultValue={user?.email ? (user.email) : ("example@mail.com")}/>
                     <button type="submit">Salvar</button>
                 </form>
             </main>

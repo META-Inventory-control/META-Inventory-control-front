@@ -13,7 +13,7 @@ export const SideBar = () => {
     const {setShowEditUserModal} = useContext(ModalsContext)
     const { user } = useContext(UserContext)
     const {setShowAddModal, setShowAddUserModal, setShowGroupModal, setShowUserModal,
-            setShowHistoricModal} = useContext(ModalsContext)
+            setShowHistoricModal, modalActive} = useContext(ModalsContext)
     const navigate = useNavigate()
 
     const handleLogout = () => {
@@ -31,24 +31,24 @@ export const SideBar = () => {
                 { user?.is_superuser ? (
                     
                     <>
-                        <div onClick={()=> setShowUserModal(true)} className="option">
+                        <div onClick={()=> {if(!modalActive){setShowUserModal(true)}}} className="option">
                             <FiUsers size={30}></FiUsers>
                             <h4>Usuarios</h4>
                         </div>
                         
-                        <div className="addProduct option" onClick={() => setShowAddModal(true)}>
+                        <div className="addProduct option" onClick={()=> {if(!modalActive){setShowAddModal(true)}}}>
                             <AiOutlinePlus size={26} color={"white"}></AiOutlinePlus>
                             <span>Adicionar produto</span>
                         </div>
-                        <div className="addUser option" onClick={() => setShowAddUserModal(true)}>
+                        <div className="addUser option" onClick={()=> {if(!modalActive){setShowAddUserModal(true)}}}>
                             <AiOutlineUserAdd size={26} color={"white"}></AiOutlineUserAdd>
                             <span>Criar usuário</span>
                         </div>
-                        <div className="addGroup option" onClick={() => setShowGroupModal(true)}>
+                        <div className="addGroup option" onClick={()=> {if(!modalActive){setShowGroupModal(true)}}}>
                             <AiOutlineGroup size={26} color={"white"}></AiOutlineGroup>
                             <span>Gerenciar grupo</span>
                         </div>
-                        <div className="historic option" onClick={() => setShowHistoricModal(true)}>
+                        <div className="historic option" onClick={()=> {if(!modalActive){setShowHistoricModal(true)}}}>
                             <BsClockHistory size={26} color={"white"}></BsClockHistory>
                             <span>Histórico de baixas</span>
                         </div>
