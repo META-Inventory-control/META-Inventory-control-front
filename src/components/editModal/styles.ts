@@ -90,6 +90,16 @@ export const StyledEditModal = styled.div`
                     opacity: 0.75;
                 }
             }
+
+            .enableFinalCostEdition {
+                display: flex;
+                margin: 0;
+
+                input {
+                    width: 26px;
+                    margin: 0 0 0 5px;
+                }
+            }
     
             .lastInput{
                 margin: 14px 0 22px 0;
