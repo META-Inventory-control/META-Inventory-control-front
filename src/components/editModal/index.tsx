@@ -35,14 +35,21 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
     } = useForm<iProductEdit>({resolver: yupResolver(editProductFormSchema)})
 
     const handleEditObj = (data: iProductEdit) => {
+        const prod = products?.find((prod) => prod.id === localStorage.getItem("@FOCUS_PRODUCT_ID"))
         let editObj: any = {}
+        console.log(editObj)
         Object.entries(data).forEach(([key, value]) => {
-            if (value !== "") {
+            if (key === "entry_cost" && value === prod?.entry_cost) {
+                return
+            } else if (value !== "") {
                 editObj[key] = value
             }
         })
         if (editObj.entry_cost) {
             editObj.entry_cost = parseInt(editObj.entry_cost)
+        }
+        if (editObj.final_cost) {
+            editObj.final_cost = parseInt(editObj.final_cost)
         }
         if (editObj.qty) {
             editObj.qty = parseInt(editObj.qty)
