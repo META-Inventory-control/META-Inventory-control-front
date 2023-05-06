@@ -61,8 +61,13 @@ export const HistoricProvider = ({children}: iProvider) => {
             const request = await api.get("/historic/", {
                 headers: {Authorization: `Bearer ${token}`}
             })
+            const sortedByDate =  request.data.sort((a: any, b: any) => {
+                const dateA = new Date(a.createdAt).getTime();
+                const dateB = new Date(b.createdAt).getTime();
+                return dateB - dateA;
+            });
             const newArr: iHistoricEntry[] = []
-            request.data.forEach((entry: iHistoricEntry) => {
+            sortedByDate.forEach((entry: iHistoricEntry) => {
                 const date = new Date(entry.createdAt);
                 const options: any = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
                 const formattedDate = new Intl.DateTimeFormat('pt-PT', options).format(date);
@@ -88,8 +93,13 @@ export const HistoricProvider = ({children}: iProvider) => {
             const request = await api.get(`/historic/${product_id}/`, {
                 headers: {Authorization: `Bearer ${token}`}
             })
+            const sortedByDate =  request.data.sort((a: any, b: any) => {
+                const dateA = new Date(a.createdAt).getTime();
+                const dateB = new Date(b.createdAt).getTime();
+                return dateB - dateA;
+            });
             const newArr: iHistoricEntry[] = []
-            request.data.forEach((entry: iHistoricEntry) => {
+            sortedByDate.forEach((entry: iHistoricEntry) => {
                 const date = new Date(entry.createdAt);
                 const options: any = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
                 const formattedDate = new Intl.DateTimeFormat('pt-PT', options).format(date);

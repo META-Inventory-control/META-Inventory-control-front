@@ -61,6 +61,7 @@ export const GroupProvider = ({children}: iProvider) => {
             setGroups(arrayFilter)
             toast.success("Grupo deletado com sucesso", {autoClose:2500})
         } catch (error) {
+            toast.error("Erro ao deletar grupo", {autoClose:2500})
             console.log(error)
         }
     }

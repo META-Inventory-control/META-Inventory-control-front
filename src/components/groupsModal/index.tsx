@@ -6,6 +6,7 @@ import { GroupsContext } from "../../contexts/groupsContext"
 import { iProduct, ProductsContext } from "../../contexts/productsContext"
 import { GroupItemModal } from "../groupItemModal"
 import { StyledCreateGroupModal } from "./style"
+import { toast } from "react-toastify"
 
 interface iGroupsPros{
     setShowGroupsModal: (value: boolean) => void
@@ -44,6 +45,8 @@ export const GroupsModal = ({setShowGroupsModal}: iGroupsPros) =>{
             setCurrentId("")
             setActivateForm(false)
             console.log(currentGroup)
+        } else {
+            toast.warn("Grupo precisa estar vazio para ser deletado", {autoClose:2500})
         }
     }
 
