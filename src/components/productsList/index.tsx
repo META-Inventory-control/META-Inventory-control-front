@@ -107,39 +107,39 @@ export const ProductsList = () => {
                                     )}
                                 </div>
                                 <div className="contentDiv">
-                                <div>
-                                    <h2>{product.name}</h2>
-                                    { user?.is_superuser ? (
-                                        <BsThreeDotsVertical size={30} color={"black"} onClick={() => {setShowEditModal(true), setFocusProductId(product.id)}}></BsThreeDotsVertical>  
-                                    ) : (
-                                        <></>
-                                    )}
-                                    { user?.is_superuser ? (
-                                        <TbRotateRectangle size={30} color={"black"} onClick={() => {setShowTakeOutPrModal(true), setFocusProductId(product.id)}}></TbRotateRectangle>  
-                                    ) : (
-                                        <></>
-                                    )}
+                                    <div>
+                                        <h2>{product.name}</h2>
+                                        { user?.is_superuser ? (
+                                            <BsThreeDotsVertical size={30} color={"black"} onClick={() => {setShowEditModal(true), setFocusProductId(product.id)}}></BsThreeDotsVertical>  
+                                        ) : (
+                                            <></>
+                                        )}
+                                        { user?.is_superuser ? (
+                                            <TbRotateRectangle size={30} color={"black"} onClick={() => {setShowTakeOutPrModal(true), setFocusProductId(product.id)}}></TbRotateRectangle>  
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </div>
+                                    <div>
+                                        { user?.is_superuser ? (
+                                            <>
+                                                <span>Valor de custo:</span>
+                                                <span>R${product.entry_cost}</span>
+                                            </>
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <span>Quantidade:</span>
+                                        <span>{product.qty}x</span>
+                                    </div>
+                                    <div>
+                                        <span>Valor final:</span>
+                                        <span>R${product.final_cost}</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    { user?.is_superuser ? (
-                                        <>
-                                            <span>Valor de custo:</span>
-                                            <span>R${product.entry_cost}</span>
-                                        </>
-                                    ) : (
-                                        <></>
-                                    )}
-                                </div>
-                                <div>
-                                    <span>Quantidade:</span>
-                                    <span>{product.qty}x</span>
-                                </div>
-                                <div>
-                                    <span>Valor final:</span>
-                                    <span>R${product.final_cost}</span>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
                         )
                     })
                 ) : (
