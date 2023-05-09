@@ -109,6 +109,24 @@ export const StyledAddProductModal = styled.div`
                 width: 100%;
                 background: white;
             }
+
+            .setQtyDiv {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0 0 14px 0;
+
+                div {
+                    padding: 0 0 14px 0;
+                    width: 30%;
+                }
+
+                input, select {
+                    height: 38px;
+                    margin: 0;
+                    box-sizing: border-box;
+                }
+            }
         }
     }
 
