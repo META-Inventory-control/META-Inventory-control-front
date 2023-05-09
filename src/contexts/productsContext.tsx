@@ -15,7 +15,9 @@ export interface iProductAdd {
 	entry_cost: number,
 	qty: number,
     group: string,
-    image: File | undefined
+    image: File | undefined,
+    min_qty: number,
+    description?: string 
 }
 
 export interface iProductEdit {
@@ -34,7 +36,9 @@ export interface iProduct {
 	qty: number,
 	image: string,
     group: string,
-    code: string
+    code: string,
+    min_qty: number,
+    description?: string | null
 }
 
 interface iProductContextRes {
@@ -95,11 +99,13 @@ export const ProductProvider = ({children}: iProvider) => {
                     name: request.data.name,
                     entry_cost: request.data.entry_cost,
                     qty: request.data.qty,
+                    min_qty: request.data.min_qty,
                     image: request.data.image,
                     id: request.data.id,
                     final_cost: request.data.final_cost,
                     group: request.data.group,
-                    code: request.data.code
+                    code: request.data.code,
+                    description: request.data.description
                 }
             ])
             setShowAddModal(false)

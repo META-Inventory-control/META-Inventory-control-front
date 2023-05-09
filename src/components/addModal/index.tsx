@@ -21,6 +21,8 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
         name: yup.string().max(35, "Nome maior que 35 caracteres.").required("Nome obrigatório"),
         entry_cost: yup.number().required("Inserção de valor de custo obrigatório"),
         qty: yup.number().required("Inserção de quantidade obrigatória"),
+        min_qty: yup.number().required("Inserção de quantidade minima obrigatória"),
+        description: yup.string().max(220, "Nome maior que 220 caracteres.").optional(),
         group: yup.string().required("Inserção de grupo obrigatória")
     })
 
@@ -57,17 +59,30 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
                     <input type="text" placeholder={errors.name?.message} {...register("name")}/>
                     <label>Valor de custo:</label>
                     <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")}/>
-                    <label>Quantidade:</label>
-                    <input type="text" placeholder={errors.qty?.message} {...register("qty")}/>
-                    <label>Grupo:</label>
-                    <select id="" {...register("group")}>
-                        <option value="" disabled selected>Selecione um grupo</option>
-                        { groups ? (
-                            groups.map((group) => <option key={group.id} value={group.id}>{group.group_name}</option>)
-                        ) : (
-                            <option disabled value="">Não há grupos</option>
-                        )}
-                    </select>
+                    <div className="setQtyDiv">
+                        <div>
+                            <label>Quantidade:</label>
+                            <input type="text" placeholder={errors.qty?.message} {...register("qty")}/>
+                        </div>
+                        <div>
+                            <label>Min qtd:</label>
+                            <input type="text" placeholder={errors.min_qty?.message} {...register("min_qty")}/>
+                        </div>
+                        <div>
+                            <label>Grupo:</label>
+                            <select id="" {...register("group")}>
+                                <option value="" disabled selected>Selecionar</option>
+                                { groups ? (
+                                    groups.map((group) => <option key={group.id} value={group.id}>{group.group_name}</option>)
+                                ) : (
+                                    <option disabled value="">Não há grupos</option>
+                                )}
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <label>Descrição:</label>
+                    <input type="text" placeholder={errors.description?.message} {...register("description")}/>
                     <label>Imagem:</label>
                     <input type="file" id="file" placeholder="Arraste uma imagem" accept=".png,.jpg,.jpeg" className="inputFile" onChange={handleImageChange}/>
                     { loading ? (

@@ -58,7 +58,7 @@ const HistoricModal = ({setShowHistoricModal}: iSetModal) => {
                                 <input type="text" onChange={(e) => handleWrittenSearchValue(e.target.value)}/>
                                 <FiSearch size={30} color="white" onClick={() => handleWrittenFilteredProducts()}></FiSearch>
                             </div>
-                            <button onClick={() => setFilteredProductsHistoric([])}>Mostrar todos</button>
+                            <button onClick={() => setFilteredProductsHistoric([])}>Todos</button>
                         </div>
                         <div className="productsContainer">
                             <ul>
@@ -93,7 +93,7 @@ const HistoricModal = ({setShowHistoricModal}: iSetModal) => {
                             <h3>Baixas:</h3>
                             <p>Este é o históricos de baixas dado pelos operadores do sistema.</p>
                             <p>Quantidade de baixas totais armazenadas: <b>{historicEntries?.length}</b></p>
-                            <button onClick={() => setFilteredHistoricEntries([])}>Mostrar todos</button>
+                            <button onClick={() => setFilteredHistoricEntries([])}>Todos</button>
                         </div>
                         <ul>
                             { FilteredHistoricEntries!.length ? (
