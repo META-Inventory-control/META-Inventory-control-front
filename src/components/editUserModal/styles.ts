@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledAddProductModal = styled.div`
+export const StyledEditModal = styled.div`
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -11,10 +11,13 @@ export const StyledAddProductModal = styled.div`
     display: flex;
     justify-content:center;
     align-items:center;
-    
+
+    @media (min-width: 1000px) {
+        width: 80%;
+    }
 
     main {
-        width: 75%;
+        width: 86%;
         background-color: #2E2A2A;
         border: 2px solid var(--Color-light);
         border-radius: 18px;
@@ -53,12 +56,12 @@ export const StyledAddProductModal = styled.div`
 
         form {
             padding: 24px 18px;
-
+    
             label {
                 font-size: 16px;
             }
     
-            input, select {
+            input {
                 width: 100%;
                 padding: 8px 10px;
                 box-sizing: border-box;
@@ -72,11 +75,9 @@ export const StyledAddProductModal = styled.div`
                     opacity: 0.75;
                 }
             }
-
-            span {
-                color: red;
-                display: block;
-                top: 0;
+    
+            .lastInput{
+                margin: 14px 0 22px 0;
             }
     
             button {
@@ -90,12 +91,6 @@ export const StyledAddProductModal = styled.div`
                 cursor: pointer;
             }
 
-            .loadingButton {
-                background: rgba(18, 94, 166, 0.38);
-                color: white;
-                cursor: wait;
-            }
-
             button:hover {
                 background-color: var(--Color-brand-1);
                 transition: 600ms;
@@ -104,47 +99,10 @@ export const StyledAddProductModal = styled.div`
             button:not(:hover) {
                 transition: 400ms;
             }
-
-            .inputFile {
-                width: 100%;
-                background: white;
-            }
-
-            .setQtyDiv {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 0 0 14px 0;
-
-                div {
-                    padding: 0 0 14px 0;
-                    width: 30%;
-                }
-
-                input, select {
-                    height: 38px;
-                    margin: 0;
-                    box-sizing: border-box;
-                }
-            }
-        }
-    }
-
-
-
-    @media (min-width: 600px) {
-        width: 100%;
-
-        main {
-            width: 60%;
-        }
     }
 
     @media (min-width: 1000px) {
-        width: 80%;
+        width: 30%;
 
-        main {
-            width: 35%;
-        }
     }
 `

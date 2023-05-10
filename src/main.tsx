@@ -8,6 +8,10 @@ import ErrorPage from './error'
 import LoginPage from './pages/login'
 import { Dashboard } from './pages/dashboard'
 import { ProductProvider } from './contexts/productsContext'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { GroupProvider } from './contexts/groupsContext'
+import { HistoricProvider } from './contexts/historicContext'
 
 const router = createBrowserRouter([
   {
@@ -27,12 +31,17 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <UserProvider>
-      <ProductProvider>
-        <ModalsProvider>
-          <RouterProvider router={router}></RouterProvider>
-        </ModalsProvider>
-      </ProductProvider>
-    </UserProvider>
+    <ModalsProvider>
+      <UserProvider>
+        <ProductProvider>
+          <GroupProvider>
+            <HistoricProvider>
+              <RouterProvider router={router}></RouterProvider>
+              <ToastContainer/>
+            </HistoricProvider>
+          </GroupProvider>
+        </ProductProvider>
+      </UserProvider>
+    </ModalsProvider>
   </React.StrictMode>,
 )

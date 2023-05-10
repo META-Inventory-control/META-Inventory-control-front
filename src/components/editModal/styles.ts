@@ -12,16 +12,31 @@ export const StyledEditModal = styled.div`
     justify-content:center;
     align-items:center;
 
-    @media (min-width: 1000px) {
-        width: 80%;
-    }
 
     main {
-        width: 86%;
+        width: 75%;
         background-color: #2E2A2A;
-        border: 2px solid #1AD300;
+        border: 2px solid var(--Color-light);
         border-radius: 18px;
         position: relative;
+
+        .deleteBtn {
+            border: 1px solid #eb3434;
+            width: 90%;
+            height: 38px;
+            border-radius: 8px;
+            background-color: transparent;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto 18px auto;
+        }
+
+        .deleteBtn:hover {
+            background-color: #ed0e0e;
+            transition: 600ms;
+        }
 
         .closeModal {
             position: absolute;
@@ -61,7 +76,7 @@ export const StyledEditModal = styled.div`
                 font-size: 16px;
             }
     
-            input {
+            input, select {
                 width: 100%;
                 padding: 8px 10px;
                 box-sizing: border-box;
@@ -75,6 +90,8 @@ export const StyledEditModal = styled.div`
                     opacity: 0.75;
                 }
             }
+
+            
     
             .lastInput{
                 margin: 14px 0 22px 0;
@@ -83,7 +100,7 @@ export const StyledEditModal = styled.div`
             button {
                 width: 100%;
                 height: 38px;
-                border: 1.5px solid #1AD300;
+                border: 1.5px solid var(--Color-light);
                 border-radius: 8px;
                 background-color: transparent;
                 color: white;
@@ -92,17 +109,57 @@ export const StyledEditModal = styled.div`
             }
 
             button:hover {
-                background-color: #16B400;
+                background-color: var(--Color-brand-2);
                 transition: 600ms;
             }
 
             button:not(:hover) {
                 transition: 400ms;
             }
+
+            .multipleFieldDiv {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0 0 14px 0;
+
+                div {
+                    padding: 0 0 14px 0;
+                    width: 48%;
+
+                    .enableFinalCostEdition {
+                        display: flex;
+                        margin: 0;
+
+                        input {
+                            width: 18px;
+                            margin: 0 0 0 5px;
+                        }
+                    }
+                }
+
+                input, select {
+                    margin: 0;
+                    box-sizing: border-box;
+                }
+            }
+        }
+        
+    }
+
+    @media (min-width: 600px) {
+        width: 100%;
+
+        main {
+            width: 60%;
+        }
     }
 
     @media (min-width: 1000px) {
-        width: 30%;
+        width: 80%;
 
+        main {
+            width: 35%;
+        }
     }
 `
