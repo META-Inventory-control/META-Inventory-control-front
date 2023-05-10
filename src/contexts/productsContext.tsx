@@ -25,7 +25,8 @@ export interface iProductEdit {
 	entry_cost?: number,
     final_cost?:number,
 	qty?: number,
-    group?: string
+    group?: string,
+    description?: string
 }
 
 export interface iProduct {
@@ -126,6 +127,7 @@ export const ProductProvider = ({children}: iProvider) => {
             products.forEach((prod) => {
                 if (prod.id === product_id) {
                     prod.name = request.data.name
+                    prod.description = request.data.description
                     prod.entry_cost = request.data.entry_cost
                     prod.final_cost = request.data.final_cost
                     prod.qty = request.data.qty

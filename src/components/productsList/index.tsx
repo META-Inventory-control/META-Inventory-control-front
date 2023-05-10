@@ -63,7 +63,11 @@ export const ProductsList = () => {
                                 </div>
                                 <div>
                                     <span>Quantidade:</span>
-                                    <span>{product.qty}x</span>
+                                    {product.qty <= product.min_qty ? (
+                                        <span className="redQty">{product.qty}x</span>
+                                    ) : (
+                                        <span>{product.qty}x</span>
+                                    )}
                                 </div>
                                 <div>
                                     <span>Valor final:</span>
@@ -132,7 +136,11 @@ export const ProductsList = () => {
                                     </div>
                                     <div>
                                         <span>Quantidade:</span>
-                                        <span>{product.qty}x</span>
+                                        {product.qty <= product.min_qty ? (
+                                        <span className="redQty">{product.qty}x</span>
+                                        ) : (
+                                            <span>{product.qty}x</span>
+                                        )}
                                     </div>
                                     <div>
                                         <span>Valor final:</span>

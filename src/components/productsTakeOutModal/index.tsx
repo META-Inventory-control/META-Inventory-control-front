@@ -15,7 +15,8 @@ interface iSetModal {
 
 interface iTakeOutProduct {
     qty: number
-    description: string
+    client: string
+    applicant: string
 }
 
 const TakeOutProductsModal = ({setShowTakeOutPrModal}: iSetModal) => {
@@ -24,7 +25,8 @@ const TakeOutProductsModal = ({setShowTakeOutPrModal}: iSetModal) => {
 
     const takeOutProductSchema = yup.object().shape({
         qty: yup.number().required("Inserção de quantidade obrigatória"),
-        description: yup.string().max(100, "Descrição passa de 100 caracteres.").required()
+        client: yup.string().required("Insira o nome do cliente"),
+        applicant: yup.string().required("Insira o nome do solicitante")
     })
 
     const {
@@ -40,7 +42,8 @@ const TakeOutProductsModal = ({setShowTakeOutPrModal}: iSetModal) => {
         } else {
             const newObj: any = {
                 qty: data.qty,
-                description: data.description,
+                client: data.client,
+                applicant: data.applicant,
                 createdBy: localStorage.getItem("@USER_ID"),
                 product: localStorage.getItem("@FOCUS_PRODUCT_ID")
             }
@@ -58,8 +61,13 @@ const TakeOutProductsModal = ({setShowTakeOutPrModal}: iSetModal) => {
                 <form onSubmit={handleSubmit(handleProductTakeOut)}>
                     <label>Quantidade a ser retirada:</label>
                     <input type="text" placeholder={errors.qty?.message} {...register("qty")}/>
-                    <label>Descrição:</label>
-                    <input type="text" placeholder={errors.qty?.message} {...register("description")}/>
+                    
+                    <label>Cliente:</label>
+                    <input type="text" placeholder={errors.client?.message} {...register("client")}/>
+
+                    <label>Solicitante:</label>
+                    <input type="text" placeholder={errors.applicant?.message} {...register("applicant")}/>
+                    
                     <button type="submit">Baixar produtos</button>
                 </form>
             </main>
