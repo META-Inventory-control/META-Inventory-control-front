@@ -26,6 +26,7 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
         entry_cost: yup.string().optional(),
         final_cost: yup.string().optional(),
         qty: yup.string().optional(),
+        min_qty: yup.string().optional(),
         group: yup.string().optional()
     })
 
@@ -55,6 +56,9 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
         if (editObj.qty) {
             editObj.qty = parseInt(editObj.qty)
         }
+        if (editObj.min_qty) {
+            editObj.min_qty = parseInt(editObj.min_qty)
+        }
         editProduct(editObj)
     }
 
@@ -74,14 +78,28 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
                     <input type="text" placeholder={errors.name?.message} {...register("name")} defaultValue={product?.name}/>
                     <label>Descrição:</label>
                     <input type="text" placeholder={errors.description?.message} {...register("description")} defaultValue={product?.description || ""}/>
-                    <label>Valor de custo:</label>
-                    <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")} defaultValue={product?.entry_cost}/>
-                    <label className="enableFinalCostEdition">Editar valor final:
-                        <input type="checkbox" onChange={(e) => setEditFinalValue(e.target.checked)}/>
-                    </label>
-                    <input type="text" placeholder={errors.final_cost?.message} {...register("final_cost")} defaultValue={product?.final_cost} disabled={!editFinalValue}/>
-                    <label>Quantidade:</label>
-                    <input type="text" placeholder={errors.qty?.message} {...register("qty")} defaultValue={product?.qty}/>
+                    <div className="multipleFieldDiv">
+                        <div>
+                            <label>Valor de custo:</label>
+                            <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")} defaultValue={product?.entry_cost}/>
+                        </div>
+                        <div>
+                            <label className="enableFinalCostEdition">Editar valor final:
+                                <input type="checkbox" onChange={(e) => setEditFinalValue(e.target.checked)}/>
+                            </label>
+                            <input type="text" placeholder={errors.final_cost?.message} {...register("final_cost")} defaultValue={product?.final_cost} disabled={!editFinalValue}/>
+                        </div>
+                    </div>
+                    <div className="multipleFieldDiv">
+                        <div>
+                            <label>Quantidade:</label>
+                            <input type="text" placeholder={errors.qty?.message} {...register("qty")} defaultValue={product?.qty}/>
+                        </div>
+                        <div>
+                            <label>Minimina qtd:</label>
+                            <input type="text" placeholder={errors.min_qty?.message} {...register("min_qty")} defaultValue={product?.min_qty}/>
+                        </div>
+                    </div>
                     <label>Grupo:</label>
                     <select id="" {...register("group")}>
                         <option value="" disabled selected>Manter mesmo grupo</option>

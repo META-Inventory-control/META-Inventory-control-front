@@ -91,15 +91,7 @@ export const StyledEditModal = styled.div`
                 }
             }
 
-            .enableFinalCostEdition {
-                display: flex;
-                margin: 0;
-
-                input {
-                    width: 26px;
-                    margin: 0 0 0 5px;
-                }
-            }
+            
     
             .lastInput{
                 margin: 14px 0 22px 0;
@@ -123,6 +115,33 @@ export const StyledEditModal = styled.div`
 
             button:not(:hover) {
                 transition: 400ms;
+            }
+
+            .multipleFieldDiv {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0 0 14px 0;
+
+                div {
+                    padding: 0 0 14px 0;
+                    width: 48%;
+
+                    .enableFinalCostEdition {
+                        display: flex;
+                        margin: 0;
+
+                        input {
+                            width: 18px;
+                            margin: 0 0 0 5px;
+                        }
+                    }
+                }
+
+                input, select {
+                    margin: 0;
+                    box-sizing: border-box;
+                }
             }
         }
         

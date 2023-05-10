@@ -52,6 +52,7 @@ export const StyledHistoricModal = styled.div`
         display:flex;
         flex-direction: column;
         gap: 3px;
+        justify-content: space-evenly;
     }
 
     .mainContainer {
@@ -228,7 +229,7 @@ export const StyledHistoricModal = styled.div`
 
             .entryCard {
                 width: 100% - 5px;
-                height: 80px;
+                height: 90px;
                 min-height: 80px;
                 background-color: var(--gray-1);
                 border-radius:10px;

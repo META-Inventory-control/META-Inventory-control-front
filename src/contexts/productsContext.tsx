@@ -25,6 +25,7 @@ export interface iProductEdit {
 	entry_cost?: number,
     final_cost?:number,
 	qty?: number,
+    min_qty?: number,
     group?: string,
     description?: string
 }
@@ -131,6 +132,7 @@ export const ProductProvider = ({children}: iProvider) => {
                     prod.entry_cost = request.data.entry_cost
                     prod.final_cost = request.data.final_cost
                     prod.qty = request.data.qty
+                    prod.min_qty = request.data.min_qty
                     prod.group = request.data.group
                 }
             })
