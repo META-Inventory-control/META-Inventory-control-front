@@ -1,6 +1,6 @@
 import {FiSearch} from "react-icons/fi"
 import { StyledSearchBar } from "./styles"
-import { ProductsContext } from "../../contexts/productsContext"
+import { iProduct, ProductsContext } from "../../contexts/productsContext"
 import { useContext, useState } from "react"
 import { GroupsContext } from "../../contexts/groupsContext"
 
@@ -35,6 +35,15 @@ export const SearchBar = () => {
         setFilteredProducts([])
     }
 
+    const lowQty = () => {
+        const arrayFiltered = products?.filter((product) => product.qty <= product.min_qty)
+        setFilteredProducts(arrayFiltered!)
+
+        if(!arrayFiltered?.length){
+            setFilteredProducts(null)
+        }
+    }
+
     return (
         <StyledSearchBar>
             <div>
@@ -46,6 +55,7 @@ export const SearchBar = () => {
                     { groups ? (
                         <>
                             <li className="showAllCard" onClick={() => resetSearch()}><h3>Mostrar todos</h3></li>
+                            <li className="showLowQty" onClick={() => lowQty()}><h3>Qtd. Baixa</h3></li>
                             {groups.map((group) => 
                                 <li key={group.id} onClick={() => handleGroupsFilteredProducts(group.id)}>
                                     <h3>{group.group_name}</h3>

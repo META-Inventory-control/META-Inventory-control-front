@@ -81,6 +81,10 @@ export const StyledSearchBar = styled.section`
             white-space: nowrap;
         }
 
+        .showLowQty{
+            background-color: #c40000;
+        }
+
         li:hover {
             background-color: var(--gray-1);
             transition: 500ms;
