@@ -108,8 +108,8 @@ const HistoricModal = ({setShowHistoricModal}: iSetModal) => {
                                                         <span>{product?.code}</span>
                                                     </div>
                                                     <div className="divDesc">
-                                                        <p>{entry.client}</p>
-                                                        <p>{entry.applicant}</p>    
+                                                        <p>Cliente: {entry.client}</p>
+                                                        <p>Solicitante: {entry.applicant}</p>    
                                                     </div>
                                                 </section>
                                                 <section>
@@ -132,8 +132,8 @@ const HistoricModal = ({setShowHistoricModal}: iSetModal) => {
                                                         <span>{product?.code}</span>
                                                     </div>
                                                     <div className="divDesc">
-                                                        <p>{entry.client}</p>
-                                                        <p>{entry.applicant}</p>
+                                                        <p>Cliente: {entry.client}</p>
+                                                        <p>Solicitante: {entry.applicant}</p>
                                                     </div>
                                                 </section>
                                                 <section>

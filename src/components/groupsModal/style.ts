@@ -148,7 +148,8 @@ export const StyledCreateGroupModal = styled.div`
     }
 
     main {
-        width: 76%;
+        width: 60%;
+        min-width: 805px;
         height: 550px;
         background-color: #2E2A2A;
         border: 2px solid var(--Color-light);
