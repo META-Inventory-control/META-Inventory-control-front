@@ -26,6 +26,10 @@ export const StyledProductsListUl = styled.ul`
         color: black;
     }
 
+    .redQty{
+        color: red;
+    }
+
     .productCard {
         height: 350px;
         width: 305px;

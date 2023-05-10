@@ -21,7 +21,7 @@ import TakeOutProductsModal from "../components/productsTakeOutModal"
 import HistoricModal from "../components/historicModal"
 
 const Dashboard = () => {
-    const {populateProducts} = useContext(ProductsContext)
+    const {populateProducts, products} = useContext(ProductsContext)
     const {user, populateUser} = useContext(UserContext)
     const {populateGroups, groups} = useContext(GroupsContext)
 

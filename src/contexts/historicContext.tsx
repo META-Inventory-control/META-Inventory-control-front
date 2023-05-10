@@ -11,11 +11,12 @@ interface iProvider {
 
 interface iHistoricEntry {
     id: string,
-	description: string,
+	client: string,
+    applicant: string,
 	qty: number,
 	createdAt: string,
     createdBy: any,
-	product: string,
+	product: string
 }
 
 interface iHistoryContextRes {
@@ -73,7 +74,8 @@ export const HistoricProvider = ({children}: iProvider) => {
                 const formattedDate = new Intl.DateTimeFormat('pt-PT', options).format(date);
                 const newObj = {
                     id: entry.id,
-                    description: entry.description,
+                    client: entry.client,
+                    applicant: entry.applicant,
                     qty: entry.qty,
                     createdAt: formattedDate,
                     createdBy: entry.createdBy,
@@ -105,7 +107,8 @@ export const HistoricProvider = ({children}: iProvider) => {
                 const formattedDate = new Intl.DateTimeFormat('pt-PT', options).format(date);
                 const newObj = {
                     id: entry.id,
-                    description: entry.description,
+                    client: entry.client,
+                    applicant: entry.applicant,
                     qty: entry.qty,
                     createdAt: formattedDate,
                     createdBy: entry.createdBy,

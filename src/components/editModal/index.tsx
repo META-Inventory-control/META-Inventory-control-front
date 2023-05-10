@@ -22,6 +22,7 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
 
     const editProductFormSchema = yup.object().shape({
         name: yup.string().optional(),
+        description: yup.string().optional(),
         entry_cost: yup.string().optional(),
         final_cost: yup.string().optional(),
         qty: yup.string().optional(),
@@ -71,6 +72,8 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
                 <form onSubmit={handleSubmit(handleEditObj)}>
                     <label>Nome:</label>
                     <input type="text" placeholder={errors.name?.message} {...register("name")} defaultValue={product?.name}/>
+                    <label>Descrição:</label>
+                    <input type="text" placeholder={errors.description?.message} {...register("description")} defaultValue={product?.description || ""}/>
                     <label>Valor de custo:</label>
                     <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")} defaultValue={product?.entry_cost}/>
                     <label className="enableFinalCostEdition">Editar valor final:

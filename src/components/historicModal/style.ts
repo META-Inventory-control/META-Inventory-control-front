@@ -48,6 +48,12 @@ export const StyledHistoricModal = styled.div`
         }
     }
 
+    .divDesc{
+        display:flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+
     .mainContainer {
         width: 98%;
         height: 90%;
