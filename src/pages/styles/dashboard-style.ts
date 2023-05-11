@@ -10,6 +10,7 @@ export const StyledApplicationMain = styled.main`
     }
 
     .buttonShowAside{
+        position: absolute;
         background-color:transparent;
         cursor:pointer;
 
