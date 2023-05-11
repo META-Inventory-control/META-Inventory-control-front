@@ -65,7 +65,11 @@ const HistoricModal = ({setShowHistoricModal}: iSetModal) => {
                                 {filteredProductsHistoric!.length ? (
                                     filteredProductsHistoric!.map((prod) => 
                                         <li key={prod.id} onClick={() => handleEntriesRender(prod.id)} className="productCard">
-                                            <img src={prod.image} alt={prod.name} />
+                                            {prod.image ? (
+                                                <img src={prod.image} alt="" />
+                                            ) : (
+                                                <img src="https://www.ncenet.com/wp-content/uploads/2020/04/no-image-png-2.png" alt="" />
+                                            )}
                                             <div>
                                                 <p>{prod.name}</p>
                                                 <p>Valor de custo: R${prod.entry_cost}</p>
@@ -76,7 +80,11 @@ const HistoricModal = ({setShowHistoricModal}: iSetModal) => {
                                 ) : (
                                     products?.map((prod) =>
                                         <li key={prod.id} onClick={() => handleEntriesRender(prod.id)} className="productCard">
-                                            <img src={prod.image} alt={prod.name} />
+                                            {prod.image ? (
+                                                <img src={prod.image} alt="" />
+                                            ) : (
+                                                <img src="https://www.ncenet.com/wp-content/uploads/2020/04/no-image-png-2.png" alt="" />
+                                            )}
                                             <div>
                                                 <p>{prod.name}</p>
                                                 <p>Valor de custo: R${prod.entry_cost}</p>
