@@ -10,13 +10,14 @@ export const SearchBar = () => {
     const [searchValue, setSearchValue] = useState("")
 
     const handleWrittenFilteredProducts = () => {
-        const newFilter = products?.filter((prod) => prod.name.toLowerCase().includes(searchValue) || prod.code.toLowerCase().includes(searchValue))
+        const newFilter = products?.filter((prod) => prod.name.toLowerCase().includes(searchValue) || searchValue.toLocaleLowerCase() == "mt"+prod.code.toLocaleLowerCase())
         setFilteredProducts(newFilter!)
     }
 
     const handleWrittenSearchValue = (value: string) => {
         if (value === "") {
             setFilteredProducts([])
+            setSearchValue("")
         } else {
             setSearchValue(value.toLowerCase())
         }
