@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface iPropsTakeOutModal{
+    set_width?: string;
+}
+
 export const StyledTakeOutProductModal = styled.div`
     width: 100%;
     height: 100%;
@@ -123,8 +127,7 @@ export const StyledTakeOutProductModal = styled.div`
     }
 
     @media (min-width: 1000px) {
-        width: 80%;
-
+        width: ${({set_width = "80%"}: iPropsTakeOutModal) => set_width};
         main {
             width: 35%;
         }

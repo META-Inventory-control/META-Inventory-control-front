@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface iPropsEditModal{
+    set_width?: string;
+}
+
 export const StyledEditModal = styled.div`
     width: 100%;
     height: 100%;
@@ -156,7 +160,7 @@ export const StyledEditModal = styled.div`
     }
 
     @media (min-width: 1000px) {
-        width: 80%;
+        width: ${({set_width = "80%"}: iPropsEditModal) => set_width};
 
         main {
             width: 35%;
