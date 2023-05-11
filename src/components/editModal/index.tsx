@@ -9,9 +9,10 @@ import { GroupsContext } from "../../contexts/groupsContext"
 
 interface iSetModal {
     setShowEditModal: (value: boolean) => void
+    showAside: boolean
 }
 
-const EditModal = ({setShowEditModal}: iSetModal) => {
+const EditModal = ({setShowEditModal, showAside}: iSetModal) => {
     const {editProduct, deleteProduct} = useContext(ProductsContext)
     const {products} = useContext(ProductsContext)
     const {groups} = useContext(GroupsContext)
@@ -67,7 +68,7 @@ const EditModal = ({setShowEditModal}: iSetModal) => {
     }
 
     return (
-        <StyledEditModal>
+        <StyledEditModal set_width={ !showAside ? "100%" : "80%"}>
             <main>
                 <button className="closeModal" onClick={() => {setShowEditModal(false), removeFocusProductId()}}>X</button>
                 <div>

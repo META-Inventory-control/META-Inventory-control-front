@@ -11,6 +11,7 @@ import { toast } from "react-toastify"
 
 interface iSetModal {
     setShowTakeOutPrModal: (value: boolean) => void
+    showAside: boolean
 }
 
 interface iTakeOutProduct {
@@ -19,7 +20,7 @@ interface iTakeOutProduct {
     applicant: string
 }
 
-const TakeOutProductsModal = ({setShowTakeOutPrModal}: iSetModal) => {
+const TakeOutProductsModal = ({setShowTakeOutPrModal, showAside}: iSetModal) => {
     const {products} = useContext(ProductsContext)
     const {TakeOutProductsAndCreateHistoricEntry} = useContext(HistoricContext)
 
@@ -52,7 +53,7 @@ const TakeOutProductsModal = ({setShowTakeOutPrModal}: iSetModal) => {
     }
 
     return (
-        <StyledTakeOutProductModal>
+        <StyledTakeOutProductModal set_width={ !showAside ? "100%" : "80%"}>
             <main>
                 <button className="closeModal" onClick={() => setShowTakeOutPrModal(false)}>X</button>
                 <div>
