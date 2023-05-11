@@ -19,6 +19,7 @@ import { GroupsModal } from "../components/groupsModal"
 import { UserModal } from "../components/userModal"
 import TakeOutProductsModal from "../components/productsTakeOutModal"
 import HistoricModal from "../components/historicModal"
+import { DescriptionModal } from "../components/descriptionModal"
 import {BsArrowBarLeft, BsArrowBarRight} from "react-icons/bs"
 
 const Dashboard = () => {
@@ -29,7 +30,7 @@ const Dashboard = () => {
 
     const {showUserModal, setShowUserModal,showAddModal, setShowAddModal, showEditModal, setShowEditModal,
     showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showGroupModal, setShowGroupModal,
-    showTakeOutPrModal, setShowTakeOutPrModal, showHistoricModal, setShowHistoricModal} = useContext(ModalsContext)
+    showTakeOutPrModal, setShowTakeOutPrModal, showHistoricModal, setShowHistoricModal, showDescriptionModal, setShowDescriptionModal} = useContext(ModalsContext)
 
     const navigate = useNavigate()
 
@@ -119,6 +120,12 @@ const Dashboard = () => {
 
                 { showHistoricModal ? (
                     <HistoricModal setShowHistoricModal={setShowHistoricModal}></HistoricModal>
+                ) : (
+                    <></>
+                )}
+
+                { showDescriptionModal ? (
+                    <DescriptionModal showAside={showAside} setShowDescriptionModal={setShowDescriptionModal}></DescriptionModal>
                 ) : (
                     <></>
                 )}
