@@ -1,4 +1,4 @@
-import { BsThreeDotsVertical } from "react-icons/bs"
+import { BsThreeDotsVertical, BsTextParagraph } from "react-icons/bs"
 import {TbRotateRectangle} from "react-icons/tb"
 import { StyledProductsListUl } from "./styles"
 import { ProductsContext } from "../../contexts/productsContext"
@@ -10,7 +10,7 @@ import { GroupsContext } from "../../contexts/groupsContext"
 export const ProductsList = () => {
     const {products, filteredProducts} = useContext(ProductsContext)
     const {user} = useContext(UserContext)
-    const {setShowEditModal, setShowTakeOutPrModal} = useContext(ModalsContext)
+    const {setShowEditModal, setShowTakeOutPrModal, setShowDescriptionModal} = useContext(ModalsContext)
     const {groups} = useContext(GroupsContext)
 
     const setFocusProductId = (productId: string) => {
@@ -48,7 +48,7 @@ export const ProductsList = () => {
                                     { user?.is_superuser ? (
                                         <TbRotateRectangle size={30} color={"black"} onClick={() => {setShowTakeOutPrModal(true), setFocusProductId(product.id)}}></TbRotateRectangle>  
                                     ) : (
-                                        <></>
+                                        <BsTextParagraph color="black" size={30} onClick={() => {setShowDescriptionModal(true), setFocusProductId(product.id)}}></BsTextParagraph>
                                     )}
                                 </div>
                                 <div>
@@ -121,7 +121,7 @@ export const ProductsList = () => {
                                         { user?.is_superuser ? (
                                             <TbRotateRectangle size={30} color={"black"} onClick={() => {setShowTakeOutPrModal(true), setFocusProductId(product.id)}}></TbRotateRectangle>  
                                         ) : (
-                                            <></>
+                                            <BsTextParagraph color="black" size={30} onClick={() => {setShowDescriptionModal(true), setFocusProductId(product.id)}}></BsTextParagraph>
                                         )}
                                     </div>
                                     <div>
@@ -131,7 +131,8 @@ export const ProductsList = () => {
                                                 <span>R${product.entry_cost}</span>
                                             </>
                                         ) : (
-                                            <></>
+                                            <> 
+                                            </>
                                         )}
                                     </div>
                                     <div>
