@@ -64,7 +64,7 @@ const HistoricModal = ({setShowHistoricModal}: iSetModal) => {
                             <ul>
                                 {filteredProductsHistoric!.length ? (
                                     filteredProductsHistoric!.map((prod) => 
-                                        <li onClick={() => handleEntriesRender(prod.id)} className="productCard">
+                                        <li key={prod.id} onClick={() => handleEntriesRender(prod.id)} className="productCard">
                                             <img src={prod.image} alt={prod.name} />
                                             <div>
                                                 <p>{prod.name}</p>
@@ -75,7 +75,7 @@ const HistoricModal = ({setShowHistoricModal}: iSetModal) => {
                                     )
                                 ) : (
                                     products?.map((prod) =>
-                                        <li onClick={() => handleEntriesRender(prod.id)} className="productCard">
+                                        <li key={prod.id} onClick={() => handleEntriesRender(prod.id)} className="productCard">
                                             <img src={prod.image} alt={prod.name} />
                                             <div>
                                                 <p>{prod.name}</p>

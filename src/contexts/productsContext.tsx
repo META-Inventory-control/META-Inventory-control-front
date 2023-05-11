@@ -74,7 +74,7 @@ export const ProductProvider = ({children}: iProvider) => {
             })
             const array = request.data
             const novoArray = array.map((obj: { code: string; }) => {
-                const novoObj = Object.assign({}, obj, { ["code"]: "MT" + obj.code });
+                const novoObj = Object.assign({}, obj, { ["code"]: obj.code });
                 return novoObj;
               });
             setProducts(novoArray)
