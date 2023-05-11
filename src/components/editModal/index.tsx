@@ -97,7 +97,7 @@ const EditModal = ({setShowEditModal, showAside}: iSetModal) => {
                             <input type="text" placeholder={errors.qty?.message} {...register("qty")} defaultValue={product?.qty}/>
                         </div>
                         <div>
-                            <label>Minimina qtd:</label>
+                            <label>Mínima qtd:</label>
                             <input type="text" placeholder={errors.min_qty?.message} {...register("min_qty")} defaultValue={product?.min_qty}/>
                         </div>
                     </div>
