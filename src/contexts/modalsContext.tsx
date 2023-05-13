@@ -18,10 +18,12 @@ interface iModalsContext {
     showTakeOutPrModal: boolean,
     setShowTakeOutPrModal: (value: boolean) => void
     showHistoricModal: boolean
-    setShowHistoricModal: (value: boolean) => void,
+    setShowHistoricModal: (value: boolean) => void
     modalActive: boolean
     showDescriptionModal: boolean
     setShowDescriptionModal: (value: boolean) => void
+    showMultipliersModal: boolean
+    setShowMultipliersModal: (value: boolean) => void
 } 
 
 export const ModalsContext = createContext<iModalsContext>({} as iModalsContext)
@@ -36,8 +38,10 @@ export const ModalsProvider = ({children}:any) => {
     const [showTakeOutPrModal, setShowTakeOutPrModal] = useState(false)
     const [showHistoricModal, setShowHistoricModal] = useState(false)
     const [showDescriptionModal, setShowDescriptionModal] = useState(false)
+    const [showMultipliersModal, setShowMultipliersModal] = useState(false)
     
-    const modalsState = [showEditModal, showAddModal, showAddUserModal, showEditUserModal, showGroupModal, showUserModal, showTakeOutPrModal, showHistoricModal]
+    const modalsState = [showEditModal, showAddModal, showAddUserModal, showEditUserModal, showGroupModal,
+         showUserModal, showTakeOutPrModal, showHistoricModal, showDescriptionModal, showMultipliersModal]
     const [modalActive, setModalActive] = useState(false)
 
     useEffect(() => {
@@ -58,7 +62,7 @@ export const ModalsProvider = ({children}:any) => {
         <ModalsContext.Provider value={{
             showUserModal, setShowUserModal, showGroupModal, setShowGroupModal,showEditModal, setShowEditModal, showAddModal, setShowAddModal,
             showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showTakeOutPrModal, setShowTakeOutPrModal,
-            showHistoricModal, setShowHistoricModal, modalActive, showDescriptionModal, setShowDescriptionModal
+            showHistoricModal, setShowHistoricModal, modalActive, showDescriptionModal, setShowDescriptionModal, showMultipliersModal, setShowMultipliersModal
         }}>
             {children}
         </ModalsContext.Provider>

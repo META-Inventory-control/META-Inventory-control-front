@@ -21,16 +21,20 @@ import TakeOutProductsModal from "../components/productsTakeOutModal"
 import HistoricModal from "../components/historicModal"
 import { DescriptionModal } from "../components/descriptionModal"
 import {BsArrowBarLeft, BsArrowBarRight} from "react-icons/bs"
+import { MultipliersModal } from "../components/multipliersModal"
+import { MultipliersContext } from "../contexts/multipliers"
 
 const Dashboard = () => {
     const {populateProducts, products} = useContext(ProductsContext)
     const {user, populateUser} = useContext(UserContext)
     const {populateGroups, groups} = useContext(GroupsContext)
+    const {populateMultipliers} = useContext(MultipliersContext)
     const [showAside, setShowAside] = useState(true)
 
     const {showUserModal, setShowUserModal,showAddModal, setShowAddModal, showEditModal, setShowEditModal,
     showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showGroupModal, setShowGroupModal,
-    showTakeOutPrModal, setShowTakeOutPrModal, showHistoricModal, setShowHistoricModal, showDescriptionModal, setShowDescriptionModal} = useContext(ModalsContext)
+    showTakeOutPrModal, setShowTakeOutPrModal, showHistoricModal, setShowHistoricModal, showDescriptionModal, setShowDescriptionModal,
+    showMultipliersModal, setShowMultipliersModal} = useContext(ModalsContext)
 
     const navigate = useNavigate()
 
@@ -43,6 +47,7 @@ const Dashboard = () => {
                 populateUser(user_id)
                 populateProducts()
                 populateGroups()
+                populateMultipliers()
             } else {
                 localStorage.clear()
                 navigate("/login")
@@ -120,6 +125,12 @@ const Dashboard = () => {
 
                 { showHistoricModal ? (
                     <HistoricModal setShowHistoricModal={setShowHistoricModal}></HistoricModal>
+                ) : (
+                    <></>
+                )}
+
+                { showMultipliersModal ? (
+                    <MultipliersModal setShowMultipliersModal={setShowMultipliersModal}></MultipliersModal>
                 ) : (
                     <></>
                 )}

@@ -2,6 +2,7 @@ import { StyledSideBarSection } from "./styles"
 import {BsClockHistory} from "react-icons/bs"
 import {CgProfile} from "react-icons/cg"
 import {BiLogOut} from "react-icons/bi"
+import {SlCalculator} from "react-icons/sl"
 import { ModalsContext } from "../../contexts/modalsContext"
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
@@ -13,7 +14,7 @@ export const SideBar = () => {
     const {setShowEditUserModal} = useContext(ModalsContext)
     const { user } = useContext(UserContext)
     const {setShowAddModal, setShowAddUserModal, setShowGroupModal, setShowUserModal,
-            setShowHistoricModal, modalActive} = useContext(ModalsContext)
+            setShowHistoricModal, modalActive, setShowMultipliersModal} = useContext(ModalsContext)
     const navigate = useNavigate()
 
     const handleLogout = () => {
@@ -31,11 +32,6 @@ export const SideBar = () => {
                 { user?.is_superuser ? (
                     
                     <>
-                        <div onClick={()=> {if(!modalActive){setShowUserModal(true)}}} className="option">
-                            <FiUsers size={30}></FiUsers>
-                            <h4>Usuarios</h4>
-                        </div>
-                        
                         <div className="addProduct option" onClick={()=> {if(!modalActive){setShowAddModal(true)}}}>
                             <AiOutlinePlus size={26} color={"white"}></AiOutlinePlus>
                             <span>Adicionar produto</span>
@@ -44,13 +40,21 @@ export const SideBar = () => {
                             <AiOutlineUserAdd size={26} color={"white"}></AiOutlineUserAdd>
                             <span>Criar usuário</span>
                         </div>
+                        <div onClick={()=> {if(!modalActive){setShowUserModal(true)}}} className="option">
+                            <FiUsers size={30}></FiUsers>
+                            <h4>Usuarios</h4>
+                        </div>
                         <div className="addGroup option" onClick={()=> {if(!modalActive){setShowGroupModal(true)}}}>
                             <AiOutlineGroup size={26} color={"white"}></AiOutlineGroup>
-                            <span>Gerenciar grupo</span>
+                            <span>Gerenciar grupos</span>
                         </div>
                         <div className="historic option" onClick={()=> {if(!modalActive){setShowHistoricModal(true)}}}>
                             <BsClockHistory size={26} color={"white"}></BsClockHistory>
                             <span>Histórico de baixas</span>
+                        </div>
+                        <div className="editMultipliers option" onClick={()=> {if(!modalActive){setShowMultipliersModal(true)}}}>
+                            <SlCalculator size={26} color={"white"}></SlCalculator>
+                            <span>Multiplicadores</span>
                         </div>
                     </>
                 ) : (
