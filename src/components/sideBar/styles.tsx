@@ -45,6 +45,12 @@ export const StyledSideBarSection = styled.section`
         transition: 500ms;
     }
 
+    @media (max-width: 1500px) {
+        .option {
+            font-size: 16px;
+        }
+    }
+
     @media (max-width: 1000px) {
         height: 160px;
         width: 100%;
