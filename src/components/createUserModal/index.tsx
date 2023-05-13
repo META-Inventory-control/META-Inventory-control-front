@@ -17,7 +17,8 @@ const AddUserModal = ({setShowAddUserModal}: iSetModal) => {
         username: yup.string().required("Nome obrigatório"),
         password: yup.string().required("Senha obrigatória"),
         email: yup.string().email("O valor inserido tem que ser um e-mail").required("Email obrigatório"),
-        is_superuser: yup.boolean()
+        is_superuser: yup.boolean(),
+        is_operator: yup.boolean()
     })
 
     const {
@@ -27,7 +28,24 @@ const AddUserModal = ({setShowAddUserModal}: iSetModal) => {
     } = useForm<iCreateUser>({resolver: yupResolver(addUserFormSchema)})
 
     const handleUserCreation = (data: iCreateUser) => {
-        createUser(data)
+        const newObj: iCreateUser = {
+            username: data.username,
+            password: data.password,
+            email: data.email,
+            is_superuser: false,
+            is_operator: false
+        }
+
+        if (data.is_operator && !data.is_superuser) {
+            newObj["is_superuser"] = true
+            newObj["is_operator"] = true
+        } else if (!data.is_operator && data.is_superuser) {
+            newObj["is_superuser"] = true
+        } else if (data.is_operator && data.is_superuser) {
+            newObj["is_superuser"] = true
+        }
+
+        createUser(newObj)
     }
 
     return (
@@ -45,8 +63,14 @@ const AddUserModal = ({setShowAddUserModal}: iSetModal) => {
                     <label>E-mail:</label>
                     <input type="text" placeholder={errors.email?.message} className="emailInput" {...register("email")}/>
                     <div className="superUserCheckbox">
-                        <label>Usuário admin</label>
-                        <input type="checkbox" {...register("is_superuser")}/>
+                        <div>
+                            <label>Admin:</label>
+                            <input type="checkbox" {...register("is_superuser")}/>
+                        </div>
+                        <div>
+                            <label>Operador:</label>
+                            <input type="checkbox" {...register("is_operator")}/>
+                        </div>
                     </div>
                     <button type="submit">Criar usuário</button>
                 </form>

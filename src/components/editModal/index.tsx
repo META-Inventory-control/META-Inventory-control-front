@@ -6,6 +6,7 @@ import { useContext, useState } from "react"
 import { ProductsContext } from "../../contexts/productsContext"
 import { iProductEdit } from "../../contexts/productsContext"
 import { GroupsContext } from "../../contexts/groupsContext"
+import { UserContext } from "../../contexts/userContext"
 
 interface iSetModal {
     setShowEditModal: (value: boolean) => void
@@ -16,6 +17,7 @@ const EditModal = ({setShowEditModal, showAside}: iSetModal) => {
     const {editProduct, deleteProduct} = useContext(ProductsContext)
     const {products} = useContext(ProductsContext)
     const {groups} = useContext(GroupsContext)
+    const {user} = useContext(UserContext)
 
     const [editFinalValue, setEditFinalValue] = useState(false)
 
@@ -111,7 +113,13 @@ const EditModal = ({setShowEditModal, showAside}: iSetModal) => {
                     </select>
                     <button type="submit">Salvar</button>
                 </form>
-                <button onClick={() => deleteProduct()} className="deleteBtn">Deletar produto</button>
+
+                { user?.is_superuser && !user?.is_operator ? (
+                    <button onClick={() => deleteProduct()} className="deleteBtn">Deletar produto</button>
+                ) : (
+                    <></>
+                )}
+                
             </main>
         </StyledEditModal>
     )

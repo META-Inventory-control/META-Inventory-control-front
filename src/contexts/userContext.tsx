@@ -15,7 +15,8 @@ export interface iUser {
     id: string,
     is_superuser: boolean,
     username: string,
-    email: string
+    email: string,
+    is_operator: boolean
 }
 
 export interface iUserEdit {
@@ -26,6 +27,7 @@ export interface iUserEdit {
 
 export interface iCreateUser {
     is_superuser?: boolean,
+    is_operator?: boolean,
     username: string,
     email: string,
     password: string
@@ -77,7 +79,8 @@ export const UserProvider = ({children}: iProvider) => {
                 id: request.data.id,
                 is_superuser: request.data.is_superuser,
                 username: request.data.username,
-                email: request.data.email
+                email: request.data.email,
+                is_operator: request.data.is_operator
             }
             setUser(userObj)
         } catch (error) {
