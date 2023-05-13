@@ -33,6 +33,7 @@ export interface iProductEdit {
 export interface iProduct {
     id: string,
 	final_cost: number,
+    final_cost_altered: boolean,
 	name: string,
 	entry_cost: number,
 	qty: number,
@@ -105,6 +106,7 @@ export const ProductProvider = ({children}: iProvider) => {
                     image: request.data.image,
                     id: request.data.id,
                     final_cost: request.data.final_cost,
+                    final_cost_altered: request.data.final_cost_altered,
                     group: request.data.group,
                     code: request.data.code,
                     description: request.data.description
