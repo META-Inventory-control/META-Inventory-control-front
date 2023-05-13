@@ -113,10 +113,10 @@ export const ProductProvider = ({children}: iProvider) => {
                 }
             ])
             setShowAddModal(false)
-            toast.success("Produto criado!", {autoClose: 3000})
+            toast.success("Produto criado!", {autoClose: 1500})
         } catch (error) {
             console.log(error)
-            toast.error("Erro ao criar produto!", {autoClose: 3000})
+            toast.error("Erro ao criar produto!", {autoClose: 1500})
         }
     }
 
@@ -140,10 +140,10 @@ export const ProductProvider = ({children}: iProvider) => {
             })
             setShowEditModal(false)
             setShowTakeOutPrModal(false)
-            toast.success("Sucesso ao editar produto!", {autoClose: 3000})
+            toast.success("Sucesso ao editar produto!", {autoClose: 1500})
         } catch (error) {
             console.log(error)
-            toast.error("Erro ao editar produto!", {autoClose: 3000})
+            toast.error("Erro ao editar produto!", {autoClose: 1500})
         }
     }
 
@@ -157,10 +157,10 @@ export const ProductProvider = ({children}: iProvider) => {
             const deletedObjArr = products.filter((prod) => prod.id !== product_id)
             setProducts(deletedObjArr)
             setShowEditModal(false)
-            toast.warn("Produto deletado!", {autoClose: 3000})
+            toast.warn("Produto deletado!", {autoClose: 1500})
         } catch (error) {
             console.log(error)
-            toast.error("Erro ao deletar produto!", {autoClose: 3000})
+            toast.error("Erro ao deletar produto!", {autoClose: 1500})
         }
     }
 

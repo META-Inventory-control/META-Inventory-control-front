@@ -35,14 +35,15 @@ export const StyledSearchBar = styled.section`
         display: flex;
         justify-content: center;
         padding-bottom: 4px;
+        padding: 0 50px 5px 50px;
 
         ul {
             min-width: 30%;
             max-width: 90;
-            padding: 0 50px 5px 50px;
             display: flex;
             gap: 14px;
             overflow-x: scroll;
+            padding-bottom: 5px;
 
             ::-webkit-scrollbar {
                 height: 4px;
