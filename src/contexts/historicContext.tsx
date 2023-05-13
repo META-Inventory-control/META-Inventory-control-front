@@ -49,10 +49,10 @@ export const HistoricProvider = ({children}: iProvider) => {
                     prod.qty = prod.qty - request.data.qty
                 }
             })
-            toast.success("Baixa concluída!", {autoClose: 3000})
+            toast.success("Baixa concluída!", {autoClose: 1500})
             setShowTakeOutPrModal(false)
         } catch (error) {
-            toast.error("Erro ao baixar produto", {autoClose: 3000})
+            toast.error("Erro ao baixar produto", {autoClose: 1500})
         }
     }
 
@@ -85,7 +85,7 @@ export const HistoricProvider = ({children}: iProvider) => {
             })
             setHistoricEntries(newArr)
         } catch (error) {
-            toast.error("Erro ao coletar baixas", {autoClose: 3000})
+            toast.error("Erro ao coletar baixas", {autoClose: 1500})
         }
     }
 
@@ -118,7 +118,7 @@ export const HistoricProvider = ({children}: iProvider) => {
             })
             setFilteredHistoricEntries(newArr)
         } catch (error) {
-            toast.error("Erro ao coletar baixas", {autoClose: 3000})
+            toast.error("Erro ao coletar baixas", {autoClose: 1500})
         }
     }
 

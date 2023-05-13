@@ -40,7 +40,6 @@ const EditModal = ({setShowEditModal, showAside}: iSetModal) => {
     const handleEditObj = (data: iProductEdit) => {
         const prod = products?.find((prod) => prod.id === localStorage.getItem("@FOCUS_PRODUCT_ID"))
         let editObj: any = {}
-        console.log(editObj)
         Object.entries(data).forEach(([key, value]) => {
             if (key === "entry_cost" && value === prod?.entry_cost) {
                 return

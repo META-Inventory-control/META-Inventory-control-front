@@ -12,6 +12,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { GroupProvider } from './contexts/groupsContext'
 import { HistoricProvider } from './contexts/historicContext'
+import { MultipliersProvider } from './contexts/multipliers'
 
 const router = createBrowserRouter([
   {
@@ -36,8 +37,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <ProductProvider>
           <GroupProvider>
             <HistoricProvider>
-              <RouterProvider router={router}></RouterProvider>
-              <ToastContainer/>
+              <MultipliersProvider>
+                <RouterProvider router={router}></RouterProvider>
+                <ToastContainer/>
+              </MultipliersProvider>
             </HistoricProvider>
           </GroupProvider>
         </ProductProvider>

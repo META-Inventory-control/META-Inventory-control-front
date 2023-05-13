@@ -33,6 +33,7 @@ export interface iProductEdit {
 export interface iProduct {
     id: string,
 	final_cost: number,
+    final_cost_altered: boolean,
 	name: string,
 	entry_cost: number,
 	qty: number,
@@ -105,16 +106,17 @@ export const ProductProvider = ({children}: iProvider) => {
                     image: request.data.image,
                     id: request.data.id,
                     final_cost: request.data.final_cost,
+                    final_cost_altered: request.data.final_cost_altered,
                     group: request.data.group,
                     code: request.data.code,
                     description: request.data.description
                 }
             ])
             setShowAddModal(false)
-            toast.success("Produto criado!", {autoClose: 3000})
+            toast.success("Produto criado!", {autoClose: 1500})
         } catch (error) {
             console.log(error)
-            toast.error("Erro ao criar produto!", {autoClose: 3000})
+            toast.error("Erro ao criar produto!", {autoClose: 1500})
         }
     }
 
@@ -138,10 +140,10 @@ export const ProductProvider = ({children}: iProvider) => {
             })
             setShowEditModal(false)
             setShowTakeOutPrModal(false)
-            toast.success("Sucesso ao editar produto!", {autoClose: 3000})
+            toast.success("Sucesso ao editar produto!", {autoClose: 1500})
         } catch (error) {
             console.log(error)
-            toast.error("Erro ao editar produto!", {autoClose: 3000})
+            toast.error("Erro ao editar produto!", {autoClose: 1500})
         }
     }
 
@@ -155,10 +157,10 @@ export const ProductProvider = ({children}: iProvider) => {
             const deletedObjArr = products.filter((prod) => prod.id !== product_id)
             setProducts(deletedObjArr)
             setShowEditModal(false)
-            toast.warn("Produto deletado!", {autoClose: 3000})
+            toast.warn("Produto deletado!", {autoClose: 1500})
         } catch (error) {
             console.log(error)
-            toast.error("Erro ao deletar produto!", {autoClose: 3000})
+            toast.error("Erro ao deletar produto!", {autoClose: 1500})
         }
     }
 

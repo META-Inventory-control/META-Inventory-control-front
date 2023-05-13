@@ -45,7 +45,7 @@ export const GroupProvider = ({children}: iProvider) => {
                 headers: {Authorization: `Bearer ${token}`}
             })
             setGroups([...groups, request.data])
-            toast.success("Grupo criado com sucesso", {autoClose:2500})
+            toast.success("Grupo criado com sucesso", {autoClose:1500})
         } catch (error) {
             console.log(error)
         }
@@ -59,9 +59,9 @@ export const GroupProvider = ({children}: iProvider) => {
             })
             const arrayFilter = groups.filter((group)=> group.id !== groupId)
             setGroups(arrayFilter)
-            toast.success("Grupo deletado com sucesso", {autoClose:2500})
+            toast.success("Grupo deletado com sucesso", {autoClose:1500})
         } catch (error) {
-            toast.error("Erro ao deletar grupo", {autoClose:2500})
+            toast.error("Erro ao deletar grupo", {autoClose:1500})
             console.log(error)
         }
     }
@@ -75,7 +75,7 @@ export const GroupProvider = ({children}: iProvider) => {
             console.log(request)
             const arrayFilter = groups.filter((group)=> group.id !== groupId)
             setGroups([...arrayFilter, request.data])
-            toast.success("Grupo atualizado com sucesso", {autoClose:2500})
+            toast.success("Grupo atualizado com sucesso", {autoClose:1500})
         } catch (error) {
             console.log(error)
         }
