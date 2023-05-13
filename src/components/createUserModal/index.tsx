@@ -48,7 +48,7 @@ const AddUserModal = ({setShowAddUserModal}: iSetModal) => {
                         <label>Usuário admin</label>
                         <input type="checkbox" {...register("is_superuser")}/>
                     </div>
-                    <button type="submit">Adicionar produto</button>
+                    <button type="submit">Criar usuário</button>
                 </form>
             </main>
         </StyledAddModal>

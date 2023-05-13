@@ -241,6 +241,9 @@ export const StyledHistoricModal = styled.div`
                     width: 50%;
                     padding: 3px;
                     box-sizing: border-box;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
 
                     div:nth-child(1) {
                         display: flex;
@@ -250,6 +253,7 @@ export const StyledHistoricModal = styled.div`
                         gap: 7px;
                         h3 {
                             color: var(--light-black);
+                            font-size: 14px;
                         }
                         span {
                             font-size: 14px;
@@ -261,7 +265,8 @@ export const StyledHistoricModal = styled.div`
                         display: flex;
                         width: 100%;
                         background-color: white;
-                        height: 75%;
+                        margin-top: 10px;
+                        height: 55%;
                         border-radius: 6px;
                         padding: 4px 3px 0 3px;
                         box-sizing: border-box;

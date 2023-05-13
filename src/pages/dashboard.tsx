@@ -1,6 +1,6 @@
 
 import { StyledApplicationMain } from "./styles/dashboard-style"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useContext } from "react"
 import { ProductsContext } from "../contexts/productsContext"
 import { UserContext } from "../contexts/userContext"
@@ -19,15 +19,18 @@ import { GroupsModal } from "../components/groupsModal"
 import { UserModal } from "../components/userModal"
 import TakeOutProductsModal from "../components/productsTakeOutModal"
 import HistoricModal from "../components/historicModal"
+import { DescriptionModal } from "../components/descriptionModal"
+import {BsArrowBarLeft, BsArrowBarRight} from "react-icons/bs"
 
 const Dashboard = () => {
     const {populateProducts, products} = useContext(ProductsContext)
     const {user, populateUser} = useContext(UserContext)
     const {populateGroups, groups} = useContext(GroupsContext)
+    const [showAside, setShowAside] = useState(true)
 
     const {showUserModal, setShowUserModal,showAddModal, setShowAddModal, showEditModal, setShowEditModal,
     showAddUserModal, setShowAddUserModal, showEditUserModal, setShowEditUserModal, showGroupModal, setShowGroupModal,
-    showTakeOutPrModal, setShowTakeOutPrModal, showHistoricModal, setShowHistoricModal} = useContext(ModalsContext)
+    showTakeOutPrModal, setShowTakeOutPrModal, showHistoricModal, setShowHistoricModal, showDescriptionModal, setShowDescriptionModal} = useContext(ModalsContext)
 
     const navigate = useNavigate()
 
@@ -52,10 +55,27 @@ const Dashboard = () => {
 
     return (
         <StyledApplicationMain>
-            <div className="sideBarContainer">
-                <SideBar></SideBar>
-            </div>
-            <div className="mainContainer">
+            {
+                    showAside ? (
+                        <div className="sideBarContainer">
+                            <SideBar></SideBar>
+                        </div>
+                    ) : (
+                        <></>
+                    )
+                }
+            <div className={showAside? "mainContainer" : "fullMainContainer"}>
+                {
+                    showAside ? (
+                        <button className="buttonShowAside" onClick={() => setShowAside(!showAside)}>
+                            <BsArrowBarLeft size={34}></BsArrowBarLeft>
+                        </button>
+                    ) : (
+                        <button className="buttonShowAside" onClick={() => setShowAside(!showAside)}>
+                            <BsArrowBarRight size={34}></BsArrowBarRight>
+                        </button>
+                    )
+                }
                 { showAddUserModal ? (
                     <AddUserModal setShowAddUserModal={setShowAddUserModal}></AddUserModal>
                 ) : (
@@ -69,7 +89,7 @@ const Dashboard = () => {
                 )}
 
                 { showEditModal ? (
-                    <EditModal setShowEditModal={setShowEditModal}></EditModal>
+                    <EditModal showAside={showAside} setShowEditModal={setShowEditModal}></EditModal>
                 ) : (
                     <></>
                 )}
@@ -93,13 +113,19 @@ const Dashboard = () => {
                 )}
 
                 { showTakeOutPrModal ? (
-                    <TakeOutProductsModal setShowTakeOutPrModal={setShowTakeOutPrModal}></TakeOutProductsModal>
+                    <TakeOutProductsModal showAside={showAside} setShowTakeOutPrModal={setShowTakeOutPrModal}></TakeOutProductsModal>
                 ) : (
                     <></>
                 )}
 
                 { showHistoricModal ? (
                     <HistoricModal setShowHistoricModal={setShowHistoricModal}></HistoricModal>
+                ) : (
+                    <></>
+                )}
+
+                { showDescriptionModal ? (
+                    <DescriptionModal showAside={showAside} setShowDescriptionModal={setShowDescriptionModal}></DescriptionModal>
                 ) : (
                     <></>
                 )}

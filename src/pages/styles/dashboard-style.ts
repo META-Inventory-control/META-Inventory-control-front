@@ -5,6 +5,24 @@ export const StyledApplicationMain = styled.main`
     min-height: 100vh;
     margin: 0;
 
+    .fullMainContainer{
+        width:100vw;
+    }
+
+    .buttonShowAside{
+        position: absolute;
+        background-color:transparent;
+        cursor:pointer;
+
+        transition: 0.3s;
+
+        margin: 5px;
+
+        :hover{
+            transform: scale(1.2);
+        }
+    }
+
     @media (min-width: 1000px) {
         display: grid;
         grid-template-columns: 20% 80%;

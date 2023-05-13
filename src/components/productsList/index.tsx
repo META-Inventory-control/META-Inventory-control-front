@@ -1,4 +1,4 @@
-import { BsThreeDotsVertical } from "react-icons/bs"
+import { BsThreeDotsVertical, BsTextParagraph } from "react-icons/bs"
 import {TbRotateRectangle} from "react-icons/tb"
 import { StyledProductsListUl } from "./styles"
 import { ProductsContext } from "../../contexts/productsContext"
@@ -6,12 +6,14 @@ import { UserContext } from "../../contexts/userContext"
 import { useContext } from "react"
 import { ModalsContext } from "../../contexts/modalsContext"
 import { GroupsContext } from "../../contexts/groupsContext"
+import { Link, useNavigate } from "react-router-dom"
 
 export const ProductsList = () => {
     const {products, filteredProducts} = useContext(ProductsContext)
     const {user} = useContext(UserContext)
-    const {setShowEditModal, setShowTakeOutPrModal} = useContext(ModalsContext)
+    const {setShowEditModal, setShowTakeOutPrModal, setShowDescriptionModal} = useContext(ModalsContext)
     const {groups} = useContext(GroupsContext)
+    const navigate = useNavigate()
 
     const setFocusProductId = (productId: string) => {
         localStorage.setItem("@FOCUS_PRODUCT_ID", productId)
@@ -31,8 +33,8 @@ export const ProductsList = () => {
                                 <span>MT{product.code}</span>
                             </div>
                             <div className="imgDiv">
-                                {product.image ? (
-                                    <img src={product.image} alt="" />
+                                {product.image ? ( 
+                                    <img onClick={() => window.location.href = product.image} src={product.image} alt="" />
                                 ) : (
                                     <img src="https://www.ncenet.com/wp-content/uploads/2020/04/no-image-png-2.png" alt="" />
                                 )}
@@ -48,7 +50,7 @@ export const ProductsList = () => {
                                     { user?.is_superuser ? (
                                         <TbRotateRectangle size={30} color={"black"} onClick={() => {setShowTakeOutPrModal(true), setFocusProductId(product.id)}}></TbRotateRectangle>  
                                     ) : (
-                                        <></>
+                                        <BsTextParagraph color="black" size={30} onClick={() => {setShowDescriptionModal(true), setFocusProductId(product.id)}}></BsTextParagraph>
                                     )}
                                 </div>
                                 <div>
@@ -105,7 +107,7 @@ export const ProductsList = () => {
                                 </div>
                                 <div className="imgDiv">
                                     {product.image ? (
-                                        <img src={product.image} alt="" />
+                                        <img onClick={() => window.location.href = product.image} src={product.image} alt="" />
                                     ) : (
                                         <img src="https://www.ncenet.com/wp-content/uploads/2020/04/no-image-png-2.png" alt="" />
                                     )}
@@ -121,7 +123,7 @@ export const ProductsList = () => {
                                         { user?.is_superuser ? (
                                             <TbRotateRectangle size={30} color={"black"} onClick={() => {setShowTakeOutPrModal(true), setFocusProductId(product.id)}}></TbRotateRectangle>  
                                         ) : (
-                                            <></>
+                                            <BsTextParagraph color="black" size={30} onClick={() => {setShowDescriptionModal(true), setFocusProductId(product.id)}}></BsTextParagraph>
                                         )}
                                     </div>
                                     <div>
@@ -131,7 +133,8 @@ export const ProductsList = () => {
                                                 <span>R${product.entry_cost}</span>
                                             </>
                                         ) : (
-                                            <></>
+                                            <> 
+                                            </>
                                         )}
                                     </div>
                                     <div>
