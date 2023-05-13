@@ -60,10 +60,10 @@ export const UserProvider = ({children}: iProvider) => {
             const decodedToken:any = decodeToken(request.data.access)
             populateUser(decodedToken.user_id)
             window.localStorage.setItem("@USER_ID", decodedToken.user_id);
-            toast.success("Login bem sucedido!", {autoClose: 3000})
+            toast.success("Login bem sucedido!", {autoClose: 1500})
         } catch (error) {
             console.log(error)
-            toast.error("Credenciais incorretas!", {autoClose: 3000})
+            toast.error("Credenciais incorretas!", {autoClose: 1500})
         }
     }
 
@@ -92,10 +92,10 @@ export const UserProvider = ({children}: iProvider) => {
                 headers: {Authorization: `Bearer ${token}`}
             })
             setShowAddUserModal(false)
-            toast.success("Usuário criado!", {autoClose: 3000})
+            toast.success("Usuário criado!", {autoClose: 1500})
         } catch (error) {
             console.log(error)
-            toast.error("Erro ao criar usuário!", {autoClose: 3000})
+            toast.error("Erro ao criar usuário!", {autoClose: 1500})
         }
     }
 
@@ -106,10 +106,10 @@ export const UserProvider = ({children}: iProvider) => {
                 headers: {Authorization: `Bearer ${token}`}
             })
             setShowEditUserModal(false)
-            toast.success("Sucesso ao editar usuário!", {autoClose: 3000})
+            toast.success("Sucesso ao editar usuário!", {autoClose: 1500})
         } catch (error) {
             console.log(error)
-            toast.error("Erro ao editar usuário!", {autoClose: 3000})
+            toast.error("Erro ao editar usuário!", {autoClose: 1500})
         }
     }
 
@@ -119,7 +119,7 @@ export const UserProvider = ({children}: iProvider) => {
             const request = await api.delete(`/users/${userId}/`, {
                 headers: {Authorization: `Bearer ${token}`}
             })
-            toast.success("Usuario deletado com sucesso", {autoClose:2500})
+            toast.success("Usuario deletado com sucesso", {autoClose:1500})
             listAllUsers()
         } catch (error) {
             console.log(error)
