@@ -112,7 +112,7 @@ export const GroupsModal = ({setShowGroupsModal}: iGroupsPros) =>{
                                         {
                                             currentGroup.length ? (
                                                 currentGroup.map((group) => <> 
-                                                <GroupItemModal key={group.id} image={group.image} name={group.name} qty={group.qty} entry_cost={group.entry_cost} id={group.id} min_qty={group.min_qty} final_cost={0} group={""} code={""}></GroupItemModal>
+                                                <GroupItemModal key={group.id} image={group.image} name={group.name} qty={group.qty} entry_cost={group.entry_cost} id={group.id} min_qty={group.min_qty} final_cost={0} final_cost_altered={group.final_cost_altered} group={""} code={""}></GroupItemModal>
                                                 </>)
                                             ) : (
                                                 <h2 className="ulEmpty">Vazio</h2>
