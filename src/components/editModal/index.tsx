@@ -50,10 +50,10 @@ const EditModal = ({setShowEditModal, showAside}: iSetModal) => {
             }
         })
         if (editObj.entry_cost) {
-            editObj.entry_cost = parseInt(editObj.entry_cost)
+            editObj.entry_cost = parseFloat(editObj.entry_cost)
         }
         if (editObj.final_cost) {
-            editObj.final_cost = parseInt(editObj.final_cost)
+            editObj.final_cost = parseFloat(editObj.final_cost)
         }
         if (editObj.qty) {
             editObj.qty = parseInt(editObj.qty)

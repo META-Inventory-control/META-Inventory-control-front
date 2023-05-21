@@ -17,7 +17,7 @@ export const StyledAddModal = styled.div`
     }
 
     main {
-        width: 86%;
+        width: 30%;
         background-color: #2E2A2A;
         border: 2px solid var(--Color-light);
         border-radius: 18px;
@@ -108,7 +108,7 @@ export const StyledAddModal = styled.div`
                 height: 20px;
                 display: flex;
                 flex-direction: row;
-                justify-content: center;
+                justify-content: space-between;
                 margin-top: 2px;
                 margin-bottom: 10px;
 
@@ -117,7 +117,6 @@ export const StyledAddModal = styled.div`
                     display: flex;
                     justify-content: center;
                     flex-direction: row;
-                    width: 50%;
 
                     input {
                         margin: 0;
@@ -125,10 +124,20 @@ export const StyledAddModal = styled.div`
                     }
                 }
             }
+        }
     }
 
-    @media (min-width: 1000px) {
-        width: 30%;
+    @media (max-width: 1600px) {
+        main {
+            width: 40%;
+        }
+    }
 
+    @media (max-width: 1000px) {
+        width: 100%;
+
+        main {
+            width: 86%;
+        }
     }
 `

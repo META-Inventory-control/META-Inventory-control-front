@@ -103,7 +103,6 @@ const MultipliersModal = ({setShowMultipliersModal}: iModalProps) => {
                             </div>
                         </div>
                     </section>
-                    <button type="submit">Salvar</button>
                     { loading ? (
                         <button type="submit" className="loadingButton">Recalculando...</button>
                     ) : (

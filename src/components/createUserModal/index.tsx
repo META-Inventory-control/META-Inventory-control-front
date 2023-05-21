@@ -71,6 +71,10 @@ const AddUserModal = ({setShowAddUserModal}: iSetModal) => {
                             <label>Operador:</label>
                             <input type="checkbox" {...register("is_operator")}/>
                         </div>
+                        <div>
+                            <label>Visualizador:</label>
+                            <input type="checkbox"/>
+                        </div>
                     </div>
                     <button type="submit">Criar usuário</button>
                 </form>

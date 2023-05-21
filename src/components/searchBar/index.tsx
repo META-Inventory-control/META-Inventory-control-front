@@ -24,11 +24,17 @@ export const SearchBar = () => {
     }
 
     const handleGroupsFilteredProducts = (value: string) => {
-        const newFilter = products?.filter((prod) => prod.group === value)
-        setFilteredProducts(newFilter!)
-
-        if(!newFilter?.length){
-            setFilteredProducts(null)
+        if (value === "defAction1") {
+            resetSearch()
+        } else if (value === "defAction2") {
+            lowQty()
+        } else {
+            const newFilter = products?.filter((prod) => prod.group === value)
+            setFilteredProducts(newFilter!)
+    
+            if(!newFilter?.length){
+                setFilteredProducts(null)
+            }
         }
     }
 
@@ -47,9 +53,21 @@ export const SearchBar = () => {
 
     return (
         <StyledSearchBar>
-            <div>
-                <input type="text" placeholder="Buscar" onChange={(e) => handleWrittenSearchValue(e.target.value)}/>
-                <FiSearch size={30} onClick={() => handleWrittenFilteredProducts()}></FiSearch>
+            <div className="searchDiv">
+                <div>
+                    <input type="text" placeholder="Buscar" onChange={(e) => handleWrittenSearchValue(e.target.value)}/>
+                    <FiSearch size={30} onClick={() => handleWrittenFilteredProducts()}></FiSearch>
+                </div>
+                <div>
+                    <select onChange={(e) => handleGroupsFilteredProducts(e.target.value)}>
+                        <option disabled selected>Selecionar</option>
+                        <option value="defAction1">Mostrar todos</option>
+                        <option value="defAction2">Quantidade baixa</option>
+                        {groups.map((group) => 
+                            <option value={group.id}>{group.group_name}</option>
+                        )}
+                    </select>
+                </div>
             </div>
             <div>
                 <ul>

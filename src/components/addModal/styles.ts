@@ -136,7 +136,7 @@ export const StyledAddProductModal = styled.div`
         width: 100%;
 
         main {
-            width: 60%;
+            width: 90%;
         }
     }
 

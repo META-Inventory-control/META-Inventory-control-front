@@ -9,10 +9,26 @@ export const StyledSearchBar = styled.section`
 
     div:nth-child(1) {
         height: 50px;
-        padding: 0 16%;
+        padding: 0 50px;
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+
+        div:nth-child(1) {
+            width: 70%;
+            padding: 0;
+        }
+
+        div:nth-child(2) {
+            width: 30%;
+            padding: 0;
+
+            select {
+                width: 80%;
+                height: 38px;
+                padding: 0 8px;
+                border-radius: 8px;
+            }
+        }
 
         input {
             width: 89%;
@@ -22,6 +38,10 @@ export const StyledSearchBar = styled.section`
             padding: 0 10px;
             box-sizing: border-box;
             color: var(--light-black);
+        }
+
+        svg {
+            margin-left: 16px;
         }
 
         svg:hover {

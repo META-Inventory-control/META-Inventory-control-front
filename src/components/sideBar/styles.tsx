@@ -11,7 +11,9 @@ export const StyledSideBarSection = styled.section`
 
     .logoDiv {
         img {
-            width: 28%;
+            width: 80px;
+            margin: 0 auto;
+            display: block;
         }
     }
 
@@ -45,7 +47,7 @@ export const StyledSideBarSection = styled.section`
         transition: 500ms;
     }
 
-    @media (max-width: 1500px) {
+    @media (max-width: 1680px) {
         .option {
             font-size: 16px;
         }
