@@ -54,7 +54,7 @@ export const ProductsList = () => {
                                     )}
                                 </div>
                                 <div>
-                                    { user?.is_superuser ? (
+                                    { user?.is_superuser && !user?.is_operator ? (
                                         <>
                                             <span>Valor de custo:</span>
                                             <span>R${product.entry_cost}</span>
@@ -127,14 +127,13 @@ export const ProductsList = () => {
                                         )}
                                     </div>
                                     <div>
-                                        { user?.is_superuser ? (
+                                        { user?.is_superuser && !user?.is_operator ? (
                                             <>
                                                 <span>Valor de custo:</span>
                                                 <span>R${product.entry_cost}</span>
                                             </>
                                         ) : (
-                                            <> 
-                                            </>
+                                            <></>
                                         )}
                                     </div>
                                     <div>

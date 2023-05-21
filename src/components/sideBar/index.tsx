@@ -29,8 +29,7 @@ export const SideBar = () => {
                 <img src="./image.png" alt="" />
             </div>
             <aside className="navAside">
-                { user?.is_superuser ? (
-                    
+                { user?.is_superuser && !user.is_operator ? (
                     <>
                         <div className="addProduct option" onClick={()=> {if(!modalActive){setShowAddModal(true)}}}>
                             <AiOutlinePlus size={26} color={"white"}></AiOutlinePlus>
@@ -60,6 +59,26 @@ export const SideBar = () => {
                 ) : (
                     <></>
                 )}
+
+                {user?.is_operator ? (
+                    <>
+                        <div className="addProduct option" onClick={()=> {if(!modalActive){setShowAddModal(true)}}}>
+                            <AiOutlinePlus size={26} color={"white"}></AiOutlinePlus>
+                            <span>Adicionar produto</span>
+                        </div>
+                        <div className="addGroup option" onClick={()=> {if(!modalActive){setShowGroupModal(true)}}}>
+                            <AiOutlineGroup size={26} color={"white"}></AiOutlineGroup>
+                            <span>Gerenciar grupos</span>
+                        </div>
+                        <div className="historic option" onClick={()=> {if(!modalActive){setShowHistoricModal(true)}}}>
+                            <BsClockHistory size={26} color={"white"}></BsClockHistory>
+                            <span>Histórico de baixas</span>
+                        </div>
+                    </>
+                ) : (
+                    <></>
+                )}
+
             </aside>
             <div className="optionsDiv">
                 <div  className="option" onClick={() => setShowEditUserModal(true)}>

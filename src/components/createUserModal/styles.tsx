@@ -105,7 +105,25 @@ export const StyledAddModal = styled.div`
             }
 
             .superUserCheckbox {
-                height: 60px;
+                height: 20px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                margin-top: 2px;
+                margin-bottom: 10px;
+
+                div {
+                    padding: 0;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: row;
+                    width: 50%;
+
+                    input {
+                        margin: 0;
+                        width: 16px;
+                    }
+                }
             }
     }
 
