@@ -14,8 +14,13 @@ interface iSetModal {
 const AddProductModal = ({setShowAddModal}: iSetModal) => {
     const [file, setFile] = useState<File>()
     const [loading, setLoading] = useState(false)
+    const [chars, setChars] = useState(0)
     const {addProduct} = useContext(ProductsContext)
     const {groups} = useContext(GroupsContext)
+
+    const charCount = (event: any) => {
+        setChars(event.target.value.length)
+    }
 
     const addProductsFormSchema = yup.object().shape({
         name: yup.string().max(35, "Nome maior que 35 caracteres.").required("Nome obrigatório"),
@@ -54,9 +59,11 @@ const AddProductModal = ({setShowAddModal}: iSetModal) => {
                     <h2>Criar produto</h2>
                 </div>
                 <form onSubmit={handleSubmit(createProduct)}>
-                    
-                    {errors.name ? (<span>{errors.name.message}</span>) : (<label>Nome</label>)}
-                    <input type="text" placeholder={errors.name?.message} {...register("name")}/>
+                    <div className="nameInfos">
+                        {errors.name ? (<span>{errors.name.message}</span>) : (<label>Nome</label>)}
+                        {chars > 35 ? (<p className="excedeedLimit ">Caracteres: {chars}</p>) : (<p>Caracteres: {chars}</p>)}
+                    </div>
+                    <input type="text" placeholder={errors.name?.message} {...register("name")} onChange={(e) => charCount(e)}/>
                     <label>Valor de custo:</label>
                     <input type="text" placeholder={errors.entry_cost?.message} {...register("entry_cost")}/>
                     <div className="setQtyDiv">

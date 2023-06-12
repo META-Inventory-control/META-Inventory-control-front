@@ -54,6 +54,17 @@ export const StyledAddProductModal = styled.div`
         form {
             padding: 24px 18px;
 
+            .nameInfos {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0;
+            }
+
+            .excedeedLimit {
+                color: red;
+            }
+
             label {
                 font-size: 16px;
             }
